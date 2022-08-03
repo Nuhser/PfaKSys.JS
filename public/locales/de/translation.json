@@ -1,0 +1,26 @@
+{
+    "common": {
+        "calendar": "Kalender",
+        "description": "Beschreibung",
+        "home": "Startseite",
+        "material": "Material",
+        "name": "Name",
+        "save": "Speichern",
+        "settings": "Einstellungen",
+        "users": "Benutzer"
+    },
+    "items": {
+        "condition": "Zustand",
+        "conditions": {
+            "unknown": "Unbekannt",
+            "good": "Gut",
+            "ok": "OK",
+            "mostlyOk": "Größtenteils OK",
+            "damaged": "Beschädigt",
+            "inRepair": "In Reparatur",
+            "unhygienic": "Unhygienisch",
+            "other": "Sonstiges"
+        },
+        "quantity": "Anzahl"
+    }
+}

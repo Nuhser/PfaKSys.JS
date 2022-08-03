@@ -1,0 +1,26 @@
+{
+    "common": {
+        "calendar": "Calendar",
+        "description": "Description",
+        "home": "Home",
+        "name": "Name",
+        "material": "Items",
+        "save": "Save",
+        "settings": "Settings",
+        "users": "Users"
+    },
+    "items": {
+        "condition": "Condition",
+        "conditions": {
+            "unknown": "Unknown",
+            "good": "Good",
+            "ok": "OK",
+            "mostlyOk": "Mostly OK",
+            "damaged": "Damaged",
+            "inRepair": "In Repair",
+            "unhygienic": "Unhygienic",
+            "other": "Other"
+        },
+        "quantity": "Quantity"
+    }
+}
