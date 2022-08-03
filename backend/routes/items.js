@@ -1,0 +1,67 @@
+const router = require('express').Router();
+let Item = require('../models/item.model');
+
+
+// GET all items
+router.route('/').get((req, res) => {
+    Item.find()
+        .then(items => res.json(items))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// GET item by id
+router.route('/:id').get((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// UPDATE item by id
+router.route('/:id').put((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => {
+            item.name = req.body.name;
+            item.quantity = req.body.quantity;
+            item.condition = req.body.condition;
+            item.description = req.body.description;
+            item.images = req.body.images;
+            item.comments = req.body.comments;
+
+            item.save()
+                .then(() => res.json(`Item '${item.name}' was updated!`))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// DELETE item by id
+router.route('/:id').delete((req, res) => {
+    Item.findByIdAndDelete(req.params.id)
+        .then(() => res.json(`Item '${req.params.id}' was deleted!`))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// POST new item
+router.route('/add').post((req, res) => {
+    const name = req.body.name;
+    const quantity = req.body.quantity;
+    const condition = req.body.condition;
+    const description = req.body.description;
+    const images = req.body.images;
+    const comments = req.body.comments;
+
+    const newItem = new Item({
+        name,
+        quantity,
+        condition,
+        description,
+        images,
+        comments
+    });
+
+    newItem.save()
+        .then(() => res.json(`New item '${name}' was created!`))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+module.exports = router;
