@@ -21,8 +21,8 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: {
-            values: Object.keys(ItemCondition),
-            message: 'Invalid item condition ({VALUE}). Please use one of the following: ' + Object.keys(ItemCondition).join(', ')
+            values: ItemCondition,
+            message: 'Invalid item condition ({VALUE}). Please use one of the following: ' + ItemCondition.join(', ')
         },
         default: 'unknown'
     },
