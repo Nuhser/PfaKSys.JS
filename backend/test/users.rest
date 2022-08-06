@@ -1,0 +1,39 @@
+@url = http://localhost
+@port = 5000
+@usersUrl = {{url}}:{{port}}/users/
+
+###
+
+# @name getUsers
+# @prompt userId (Optional) User ID
+GET {{usersUrl}}{{userId}}
+
+###
+
+# @name postNewUser
+POST {{usersUrl}}add
+Content-Type: application/json
+
+{
+    "name": "",
+    "email": ""
+}
+
+###
+
+# @name updateUser
+# @prompt userId User ID
+PUT {{usersUrl}}{{userId}}
+Content-Type: application/json
+
+{
+    "name": "",
+    "email": ""
+}
+
+###
+
+# @name deleteUser
+# @prompt userId User ID
+# @note
+DELETE {{usersUrl}}{{userId}}

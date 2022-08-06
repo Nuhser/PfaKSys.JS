@@ -1,0 +1,47 @@
+@url = http://localhost
+@port = 5000
+@itemsUrl = {{url}}:{{port}}/items/
+
+###
+
+# @name getItems
+# @prompt itemId (Optional) Item ID
+GET {{itemsUrl}}{{itemId}}
+
+###
+
+# @name postNewItem
+POST {{itemsUrl}}add
+Content-Type: application/json
+
+{
+    "name": "",
+    "quantity": -1,
+    "condition": "UNKNOWN",
+    "description": "",
+    "images": [],
+    "comments": []
+}
+
+###
+
+# @name updateItem
+# @prompt itemId Item ID
+PUT {{itemsUrl}}{{itemId}}
+Content-Type: application/json
+
+{
+    "name": "",
+    "quantity": -1,
+    "condition": "UNKNOWN",
+    "description": "",
+    "images": [],
+    "comments": []
+}
+
+###
+
+# @name deleteItem
+# @prompt itemId Item ID
+# @note
+DELETE {{itemsUrl}}{{itemId}}
