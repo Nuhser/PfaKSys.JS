@@ -4,13 +4,17 @@
     --bdpBrown: #9D7C00;
     --bdpYellow: #FFCB04;
 
+    /* Navbar */
+    --navbarHeight: 60px;
+
     /* Sidebar */
-    --sideBarWidth: 200px;
+    --sidebarWidth: 200px;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 main {
-    margin-left: var(--sideBarWidth);
+    margin-top: var(--navbarHeight);
+    margin-left: var(--sidebarWidth);
     padding: 12px;
     height: 100%;
 }

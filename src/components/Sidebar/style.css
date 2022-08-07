@@ -1,7 +1,7 @@
 .sidebar {
     margin: 0;
     padding: 0;
-    width: var(--sideBarWidth);
+    width: var(--sidebarWidth);
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -43,7 +43,7 @@
 .sidebar-bottom {
     position: fixed;
     bottom: 0;
-    width: var(--sideBarWidth);
+    width: var(--sidebarWidth);
     padding-top: 0.5rem;
     border-top: 2px solid rgb(55 65 81);
 }
@@ -81,6 +81,7 @@
         width: 100%;
         height: auto;
         position: relative;
+        margin-top: var(--navbarHeight);
     }
 
     .sidebar a {

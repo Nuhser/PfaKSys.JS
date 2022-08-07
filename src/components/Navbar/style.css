@@ -1,4 +1,6 @@
 .navbar {
+    position: fixed;
+    height: var(--navbarHeight);
     background-color: var(--bdpYellow);
     color: var(--bdpBrown);
 }
