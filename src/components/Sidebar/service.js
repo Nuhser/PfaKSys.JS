@@ -1,5 +1,5 @@
 export function setActiveSidebarItem(id) {
-    var dropdownContainers = document.getElementsByClassName('dropdown-container');
+    var dropdownContainers = document.getElementsByClassName('sidebar-dropdown-container');
     for (let i = 0; i < dropdownContainers.length; i++) {
         dropdownContainers[i].style.display = 'none';
         dropdownContainers[i].previousSibling.classList.remove('open');
@@ -14,7 +14,7 @@ export function setActiveSidebarItem(id) {
             items[i].classList.add('active');
 
             var parent = items[i].parentElement;
-            if (parent && parent.classList.contains('dropdown-container')) {
+            if (parent && parent.classList.contains('sidebar-dropdown-container')) {
                 parent.style.display = 'block';
                 parent.previousSibling.classList.add('open');
             }

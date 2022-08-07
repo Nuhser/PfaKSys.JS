@@ -88,7 +88,7 @@ class SidebarDropdown extends React.Component {
                         <BsCaretDownFill className="sidebar-dropdown-icon-down" size="20" />
                     </div>
                 </Button>
-                <div className="dropdown-container">
+                <div className="sidebar-dropdown-container">
                     {dropdownItems}
                 </div>
             </div>
