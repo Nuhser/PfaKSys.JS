@@ -13,14 +13,13 @@ class PfaksysNavbar extends React.Component {
             <div>
                 <Navbar expand="md" fixed="top" sticky="top" className="navbar px-3">
                     <Navbar.Brand href="/">
-                        PfaKSys
+                        <img src="/assets/logo_black.png" alt="PfaKSys Logo" />
                     </Navbar.Brand>
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">{t('common.home')}</Nav.Link>
                             <Nav.Link href="#link">Link</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
