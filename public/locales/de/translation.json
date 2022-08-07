@@ -1,11 +1,14 @@
 {
     "common": {
+        "add": "Hinzufügen",
         "calendar": "Kalender",
         "description": "Beschreibung",
         "home": "Startseite",
         "material": "Material",
         "name": "Name",
+        "overview": "Übersicht",
         "save": "Speichern",
+        "saveAndDetails": "Speichern und Details",
         "settings": "Einstellungen",
         "users": "Benutzer"
     },

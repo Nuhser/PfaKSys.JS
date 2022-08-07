@@ -1,11 +1,14 @@
 {
     "common": {
+        "add": "Add",
         "calendar": "Calendar",
         "description": "Description",
         "home": "Home",
-        "name": "Name",
         "material": "Items",
+        "name": "Name",
+        "overview": "Overview",
         "save": "Save",
+        "saveAndDetails": "Save & Details",
         "settings": "Settings",
         "users": "Users"
     },
