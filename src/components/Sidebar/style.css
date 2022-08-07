@@ -65,6 +65,13 @@
     .sidebar a {
         float: left;
     }
+
+    .sidebar-bottom {
+        position: inherit;
+        bottom: auto;
+        width: 100%;
+        border: none;
+    }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
