@@ -60,8 +60,16 @@ router.route('/add').post((req, res) => {
     });
 
     newItem.save()
-        .then(() => res.json(`New item '${name}' was created!`))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .then(
+            (item) => res.json(
+                {
+                    id: item._id,
+                    message: `New item '${name}' was created!`,
+                    item: item
+                }
+        )).catch(
+            err => res.status(400).json('Error: ' + err)
+        );
 });
 
 module.exports = router;

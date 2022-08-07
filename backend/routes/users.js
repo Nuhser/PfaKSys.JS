@@ -48,8 +48,16 @@ router.route('/add').post((req, res) => {
     });
 
     newUser.save()
-        .then(() => res.json(`New user '${username}' was created!`))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .then(
+            (user) => res.json(
+                {
+                    id: user._id,
+                    message: `New user '${username}' was created!`,
+                    user: user
+                }
+        )).catch(
+            err => res.status(400).json('Error: ' + err)
+        );
 });
 
 module.exports = router;
