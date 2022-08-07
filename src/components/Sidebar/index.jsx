@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { withTranslation } from "react-i18next";
 import { BiBox } from "react-icons/bi";
+import { BsCaretDown, BsCaretRight } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -82,7 +83,10 @@ class SidebarDropdown extends React.Component {
                 <Button id={id} className="sidebar-item sidebar-dropdown">
                     {icon}
                     <span className="whitespace-nowrap p-2">{text}</span>
-                    <i className="fa fa-caret-down"></i>
+                    <div className="sidebar-dropdown-icons">
+                        <BsCaretRight className="sidebar-dropdown-icon-right" size="20" />
+                        <BsCaretDown className="sidebar-dropdown-icon-down" size="20" />
+                    </div>
                 </Button>
                 <div className="dropdown-container">
                     {dropdownItems}
@@ -95,8 +99,10 @@ class SidebarDropdown extends React.Component {
 function enableSidebarDropdowns() {
     //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
     var dropdown = document.getElementsByClassName("sidebar-dropdown");
-    for (var i = 0; i < dropdown.length; i++) {
+    for (let i = 0; i < dropdown.length; i++) {
         dropdown[i].addEventListener("click", function () {
+            this.classList.toggle("open");
+
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
                 dropdownContent.style.display = "none";
