@@ -24,6 +24,9 @@
             "unhygienic": "Unhygienisch",
             "other": "Sonstiges"
         },
-        "quantity": "Anzahl"
+        "noQuantity": "Keine Menge",
+        "noQuantityPopoverTitle": "Mengeneinstellungen",
+        "noQuantityPopoverBody": "Aktiviere die Checkbox am Ende der Zeile, wenn das Material keine Menge hat oder du sie nicht weißt.",
+        "quantity": "Menge"
     }
 }
