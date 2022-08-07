@@ -14,6 +14,7 @@ class AddItemForm extends React.Component {
         super(props);
 
         this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeNoQuantity = this.onChangeNoQuantity.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onChangeCondition = this.onChangeCondition.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
@@ -21,6 +22,7 @@ class AddItemForm extends React.Component {
 
         this.state = {
             name: "",
+            no_quantity: false,
             quantity: 0,
             condition: "",
             description: "",
@@ -43,6 +45,10 @@ class AddItemForm extends React.Component {
         this.setState({ name: e.target.value });
     }
 
+    onChangeNoQuantity(e) {
+        this.setState({ no_quantity: e.target.checked });
+    }
+
     onChangeQuantity(e) {
         this.setState({ quantity: e.target.value });
     }
@@ -60,10 +66,14 @@ class AddItemForm extends React.Component {
 
         const newItem = {
             name: this.state.name,
-            quantity: this.state.quantity,
+            no_quantity: this.state.no_quantity,
+            quantity: this.state.no_quantity ? 0 : this.state.quantity,
             condition: this.state.condition,
             description: this.state.description
         };
+
+        console.log(newItem);
+
         trackPromise(axios.post(
             'http://localhost:5000/items/add',
             newItem
@@ -106,12 +116,16 @@ class AddItemForm extends React.Component {
                     <Form.Group className="mb-3" controlId="formQuantity">
                         <Form.Label>{t('items.quantity')}</Form.Label>
                         <InputGroup>
-                            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                            <InputGroup.Checkbox
+                                checked={this.state.no_quantity}
+                                onChange={this.onChangeNoQuantity}
+                                aria-label="Item's quantity is unknown" />
                             <Form.Control
                                 type="number"
                                 value={this.state.quantity}
                                 min={-1}
-                                onChange={this.onChangeQuantity} />
+                                onChange={this.onChangeQuantity}
+                                disabled={this.state.no_quantity} />
                         </InputGroup>
                     </Form.Group>
 

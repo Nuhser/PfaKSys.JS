@@ -11,11 +11,16 @@ const itemSchema = new mongoose.Schema({
         trim: true,
         maxlength: 100
     },
+    no_quantity: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     quantity: {
         type: Number,
         required: true,
-        min: -1,
-        default: -1
+        min: 0,
+        default: 0
     },
     condition: {
         type: String,

@@ -21,6 +21,7 @@ router.route('/:id').put((req, res) => {
     Item.findById(req.params.id)
         .then(item => {
             item.name = req.body.name;
+            item.no_quantity = req.body.no_quantity;
             item.quantity = req.body.quantity;
             item.condition = req.body.condition;
             item.description = req.body.description;
@@ -44,6 +45,7 @@ router.route('/:id').delete((req, res) => {
 // POST new item
 router.route('/add').post((req, res) => {
     const name = req.body.name;
+    const no_quantity = req.body.no_quantity;
     const quantity = req.body.quantity;
     const condition = req.body.condition;
     const description = req.body.description;
@@ -52,6 +54,7 @@ router.route('/add').post((req, res) => {
 
     const newItem = new Item({
         name,
+        no_quantity,
         quantity,
         condition,
         description,
