@@ -118,8 +118,8 @@ class AddItemForm extends React.Component {
                     <Form.Group className="mb-3" controlId="formQuantity">
                         <Form.Label>{t("items.quantity")}</Form.Label>
                             <InlineHelp
-                                helpTitle="items.noQuantityPopoverTitle"
-                                helpText="items.noQuantityPopoverBody"
+                                helpTitle="items.noQuantityHelpTitle"
+                                helpText="items.noQuantityHelpText"
                             >
                                 <InputGroup>
                                     <Form.Control

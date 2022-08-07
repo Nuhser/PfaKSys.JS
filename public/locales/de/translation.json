@@ -25,8 +25,8 @@
             "other": "Sonstiges"
         },
         "noQuantity": "Keine Menge",
-        "noQuantityPopoverTitle": "Mengeneinstellungen",
-        "noQuantityPopoverBody": "Aktiviere die Checkbox am Ende der Zeile, wenn das Material keine Menge hat oder du sie nicht weißt.",
+        "noQuantityHelpTitle": "Mengeneinstellungen",
+        "noQuantityHelpText": "Aktiviere die Checkbox am Ende der Zeile, wenn das Material keine Menge hat oder du sie nicht weißt.",
         "quantity": "Menge"
     }
 }
