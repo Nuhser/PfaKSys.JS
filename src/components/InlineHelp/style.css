@@ -1,0 +1,10 @@
+.inline-help,
+.inline-help:hover,
+.inline-help:focus {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    color: gray;
+    border-color: lightgray;
+    outline: none;
+}

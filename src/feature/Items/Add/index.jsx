@@ -1,16 +1,12 @@
 import axios from "axios";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Col from 'react-bootstrap/Col';
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Row from 'react-bootstrap/Row';
 import { withTranslation } from "react-i18next";
-import { BsQuestionCircle } from "react-icons/bs";
 import { trackPromise } from "react-promise-tracker";
 
+import InlineHelp from "../../../components/InlineHelp";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import { ItemCondition } from "../services/ItemCondition";
 
@@ -121,47 +117,26 @@ class AddItemForm extends React.Component {
 
                     <Form.Group className="mb-3" controlId="formQuantity">
                         <Form.Label>{t("items.quantity")}</Form.Label>
-                            <Row>
-                                <Col>
-                                    <InputGroup>
-                                        <Form.Control
-                                            type="number"
-                                            value={this.state.quantity}
-                                            min={-1}
-                                            onChange={this.onChangeQuantity}
-                                            disabled={this.state.no_quantity}
-                                        />
-                                        <InputGroup.Text>{t('items.noQuantity')}</InputGroup.Text>
-                                        <InputGroup.Checkbox
-                                            checked={this.state.no_quantity}
-                                            onChange={this.onChangeNoQuantity}
-                                            aria-label="Item's quantity is unknown"
-                                        />
-                                    </InputGroup>
-                                </Col>
-
-                                <Col xs="auto">
-                                    <OverlayTrigger
-                                        className="ms-2"
-                                        trigger="hover"
-                                        placement="left"
-                                        overlay={
-                                            <Popover>
-                                                <Popover.Header as="h3">
-                                                    {t('items.noQuantityPopoverTitle')}
-                                                </Popover.Header>
-                                                <Popover.Body>
-                                                    {t('items.noQuantityPopoverBody')}
-                                                </Popover.Body>
-                                            </Popover>
-                                        }
-                                    >
-                                        <Button className="inline-help" variant="light">
-                                            <BsQuestionCircle size="20" />
-                                        </Button>
-                                    </OverlayTrigger>
-                                </Col>
-                            </Row>
+                            <InlineHelp
+                                helpTitle="items.noQuantityPopoverTitle"
+                                helpText="items.noQuantityPopoverBody"
+                            >
+                                <InputGroup>
+                                    <Form.Control
+                                        type="number"
+                                        value={this.state.quantity}
+                                        min={-1}
+                                        onChange={this.onChangeQuantity}
+                                        disabled={this.state.no_quantity}
+                                    />
+                                    <InputGroup.Text>{t('items.noQuantity')}</InputGroup.Text>
+                                    <InputGroup.Checkbox
+                                        checked={this.state.no_quantity}
+                                        onChange={this.onChangeNoQuantity}
+                                        aria-label="Item's quantity is unknown"
+                                    />
+                                </InputGroup>
+                            </InlineHelp>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formCondition">
