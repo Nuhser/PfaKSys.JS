@@ -45,7 +45,7 @@
     bottom: 0;
     width: var(--sidebarWidth);
     padding-top: 0.5rem;
-    border-top: 2px solid rgb(55 65 81);
+    border-top: 1px solid grey;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
