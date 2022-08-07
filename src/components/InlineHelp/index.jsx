@@ -11,7 +11,8 @@ import "./style.css";
 
 class InlineHelp extends React.Component {
     render() {
-        const { helpTitle = '', helpText, trigger = 'hover', helpLeft = false, t } = this.props;
+        const { helpTitle = '', helpText, clickToTrigger = false, helpLeft = false, t } = this.props;
+        const trigger = clickToTrigger ? ['click'] : ['hover', 'focus'];
 
         return (
             <Row>
