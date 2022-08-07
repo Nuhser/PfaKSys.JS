@@ -22,15 +22,18 @@ class Sidebar extends React.Component {
         return (
             <div className="sidebar">
                 <SidebarDropdown
+                    id="itemsSidebarDropdown"
                     icon={<BiBox className="sidebar-icon" size="24" />}
                     text={t('common.material')}
                     dropdownItems={[
                         <SidebarItem
+                            id="itemsOverviewSidebarItem"
                             key="items.overview"
                             text={t('common.overview')}
                             link="/items"
                         />,
                         <SidebarItem
+                            id="itemsAddSidebarItem"
                             key="items.add"
                             text={t('common.add')}
                             link="/items/add"
@@ -39,6 +42,7 @@ class Sidebar extends React.Component {
                 />
 
                 <SidebarItem
+                    id="usersSidebarItem"
                     icon={<FiUsers className="sidebar-icon" size="24" />}
                     text={t("common.users")}
                     link="/users"
@@ -58,10 +62,10 @@ class Sidebar extends React.Component {
 
 class SidebarItem extends React.Component {
     render() {
-        const { icon = '', text, link = '/' } = this.props;
+        const { id, icon = '', text, link = '/' } = this.props;
 
         return (
-            <Link to={link}>
+            <Link id={id} className="sidebar-item" to={link}>
                 {icon}
                 <span className="whitespace-nowrap p-2">{text}</span>
             </Link>
@@ -71,11 +75,11 @@ class SidebarItem extends React.Component {
 
 class SidebarDropdown extends React.Component {
     render() {
-        const { icon, text, dropdownItems } = this.props;
+        const { id, icon, text, dropdownItems } = this.props;
 
         return (
             <div>
-                <Button className="dropdown-btn">
+                <Button id={id} className="sidebar-item sidebar-dropdown">
                     {icon}
                     <span className="whitespace-nowrap p-2">{text}</span>
                     <i className="fa fa-caret-down"></i>
@@ -90,12 +94,11 @@ class SidebarDropdown extends React.Component {
 
 function enableSidebarDropdowns() {
     //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var dropdown = document.getElementsByClassName("sidebar-dropdown");
     var i;
 
     for (i = 0; i < dropdown.length; i++) {
         dropdown[i].addEventListener("click", function () {
-            this.classList.toggle("active");
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
                 dropdownContent.style.display = "none";

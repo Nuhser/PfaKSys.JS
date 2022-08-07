@@ -7,6 +7,7 @@ import { withTranslation } from "react-i18next";
 import { trackPromise } from "react-promise-tracker";
 
 import { ItemCondition } from "../services/ItemCondition";
+import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 
 class AddItemForm extends React.Component {
     constructor(props) {
@@ -30,6 +31,8 @@ class AddItemForm extends React.Component {
 
     // gets called as soon as the component is mounted (directly before the first render)
     componentDidMount() {
+        setActiveSidebarItem('itemsAddSidebarItem')
+
         this.setState({
             conditions: Object.keys(ItemCondition),
             condition: 'UNKNOWN'
