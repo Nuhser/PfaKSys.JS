@@ -6,7 +6,9 @@ import "./style.css";
 import PfaksysNavbar from "../Navbar"
 import Sidebar from "../Sidebar";
 import LoadingIndicator from "../LoadingIndicator";
-import AddItem from "../../feature/Items/Add"
+import ItemList from "../../feature/Items/List";
+import AddItemForm from "../../feature/Items/Add";
+import UserList from "../../feature/Users/List";
 
 function App() {
     return (
@@ -18,7 +20,9 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" exact element={<p>Hello World!</p>} />
-                        <Route path="/items/add" element={<AddItem />} />
+                        <Route path="/items" element={<ItemList />} />
+                        <Route path="/items/add" element={<AddItemForm />} />
+                        <Route path="/users" element={<UserList />} />
                     </Routes>
                 </main>
             </Router>
