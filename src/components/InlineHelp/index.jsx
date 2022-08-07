@@ -11,7 +11,7 @@ import "./style.css";
 
 class InlineHelp extends React.Component {
     render() {
-        const { helpTitle, helpText, trigger = 'hover', helpLeft = false, t } = this.props;
+        const { helpTitle = '', helpText, trigger = 'hover', helpLeft = false, t } = this.props;
 
         return (
             <Row>
@@ -22,9 +22,11 @@ class InlineHelp extends React.Component {
                             placement="right"
                             overlay={
                                 <Popover>
-                                    <Popover.Header as="h3">
-                                        {t(helpTitle)}
-                                    </Popover.Header>
+                                    {helpText.length > 0 && (
+                                        <Popover.Header as="h3">
+                                            {t(helpTitle)}
+                                        </Popover.Header>
+                                    )}
                                     <Popover.Body>
                                         {t(helpText)}
                                     </Popover.Body>
@@ -49,9 +51,11 @@ class InlineHelp extends React.Component {
                             placement="left"
                             overlay={
                                 <Popover>
-                                    <Popover.Header as="h3">
-                                        {t(helpTitle)}
-                                    </Popover.Header>
+                                    {helpText.length > 0 && (
+                                        <Popover.Header as="h3">
+                                            {t(helpTitle)}
+                                        </Popover.Header>
+                                    )}
                                     <Popover.Body>
                                         {t(helpText)}
                                     </Popover.Body>
