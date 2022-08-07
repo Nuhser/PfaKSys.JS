@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { withTranslation } from "react-i18next";
 import { BiBox } from "react-icons/bi";
-import { BsCaretDown, BsCaretRight } from "react-icons/bs";
+import { BsCaretDownFill, BsCaretRightFill } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -84,8 +84,8 @@ class SidebarDropdown extends React.Component {
                     {icon}
                     <span className="whitespace-nowrap p-2">{text}</span>
                     <div className="sidebar-dropdown-icons">
-                        <BsCaretRight className="sidebar-dropdown-icon-right" size="20" />
-                        <BsCaretDown className="sidebar-dropdown-icon-down" size="20" />
+                        <BsCaretRightFill className="sidebar-dropdown-icon-right" size="20" />
+                        <BsCaretDownFill className="sidebar-dropdown-icon-down" size="20" />
                     </div>
                 </Button>
                 <div className="dropdown-container">
