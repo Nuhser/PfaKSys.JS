@@ -95,9 +95,7 @@ class SidebarDropdown extends React.Component {
 function enableSidebarDropdowns() {
     //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
     var dropdown = document.getElementsByClassName("sidebar-dropdown");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
+    for (var i = 0; i < dropdown.length; i++) {
         dropdown[i].addEventListener("click", function () {
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
