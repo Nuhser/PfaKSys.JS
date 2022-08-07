@@ -15,7 +15,6 @@
 main {
     margin-top: var(--navbarHeight);
     margin-left: var(--sidebarWidth);
-    padding: 12px;
     height: 100%;
 }
 

@@ -1,17 +1,27 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
+import Main from "../../../components/Main";
 
-export default class ItemList extends React.Component {
+class ItemList extends React.Component {
     componentDidMount() {
         setActiveSidebarItem('itemsOverviewSidebarItem');
     }
 
     render() {
+        const { t } = this.props;
+
         return (
-            <div>
-                <p>This is the ItemList component!</p>
-            </div>
+            <Main title={t('common.material')}>
+                <Main.Header />
+
+                <Main.Body>
+                    <p>Hello World!</p>
+                </Main.Body>
+            </Main>
         );
     }
 }
+
+export default withTranslation()(ItemList);

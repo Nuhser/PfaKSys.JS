@@ -1,0 +1,16 @@
+.header {
+    padding: 12px;
+    background-color: #f1f1f1;
+}
+
+.body {
+    padding: 12px;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    padding: 12px;
+    bottom: 0;
+    background-color: #f1f1f1;
+}
