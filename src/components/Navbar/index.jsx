@@ -20,7 +20,7 @@ class PfaksysNavbar extends React.Component {
 
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#link">Link</Nav.Link>
+                            {/* <Nav.Link href="#link">Link</Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
