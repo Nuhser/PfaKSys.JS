@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -10,6 +10,7 @@ import InlineHelp from "../../../components/InlineHelp";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import { ItemCondition } from "../services/ItemCondition";
 
+// TODO: Move this to modal
 class AddItemForm extends React.Component {
     constructor(props) {
         super(props);
@@ -90,7 +91,11 @@ class AddItemForm extends React.Component {
                 }
         }).catch(
             error => {
-                if (error.response) {
+                if (error instanceof AxiosError) {
+                    console.log(error);
+                    
+                }
+                else if (error.response) {
                     console.log(error.response.data);
                 }
         }));
