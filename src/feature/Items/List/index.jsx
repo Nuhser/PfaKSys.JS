@@ -1,8 +1,8 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 
-import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import Main from "../../../components/Main";
+import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 
 class ItemList extends React.Component {
     componentDidMount() {

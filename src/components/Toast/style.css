@@ -1,0 +1,15 @@
+.error-icon {
+    color: red;
+}
+
+.info-icon {
+    color: blue;
+}
+
+.success-icon {
+    color: green;
+}
+
+.warning-icon {
+    color: darkgoldenrod;
+}

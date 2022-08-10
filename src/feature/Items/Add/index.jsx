@@ -3,12 +3,15 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import { t } from "i18next";
 import { withTranslation } from "react-i18next";
 import { trackPromise } from "react-promise-tracker";
 
 import InlineHelp from "../../../components/InlineHelp";
+import { showErrorToast, showSuccessToast } from "../../../components/Toast/service";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import { ItemCondition } from "../services/ItemCondition";
+import { withRouter } from "../../../services/withRouter";
 
 // TODO: Move this to modal
 class AddItemForm extends React.Component {
@@ -74,7 +77,7 @@ class AddItemForm extends React.Component {
             description: this.state.description
         };
 
-        console.log(newItem);
+        console.log('POST: /items/add\n', newItem);
 
         trackPromise(axios.post(
             'http://localhost:5000/items/add',
@@ -82,21 +85,45 @@ class AddItemForm extends React.Component {
         ).then(
             res => {
                 console.log(res.data.message);
+                showSuccessToast({
+                    title: t('items.addedSuccess'),
+                    body: (
+                        <div>{res.data.message}</div>
+                    )
+                })
 
                 if (e.target.name === 'saveButton') {
-                    window.location = '/items/add';
+                    this.props.navigate('/items');
                 }
                 else {
-                    window.location = `/items/${res.data.id}`;
+                    this.props.navigate(`/items/${res.data.id}`);
                 }
         }).catch(
             error => {
                 if (error instanceof AxiosError) {
                     console.log(error);
-                    
+                    showErrorToast({
+                        title: error.name,
+                        body: (
+                            <div>
+                                <b>{error.code}</b><br/>
+                                {error.response.data ? error.response.data : error.message}
+                            </div>
+                        )
+                    })
                 }
                 else if (error.response) {
-                    console.log(error.response.data);
+                    console.log(error);
+                    showErrorToast({
+                        title: `Unexpected Error: ${error.name}`,
+                        body: (
+                            <div>
+                                <b>{error.code}</b><br/>
+                                Message: {error.message}<br/>
+                                {error.response.data && 'Data: '}{error.response.data}
+                            </div>
+                        )
+                    })
                 }
         }));
     }
@@ -195,4 +222,4 @@ class AddItemForm extends React.Component {
     }
 }
 
-export default withTranslation()(AddItemForm);
+export default withRouter(withTranslation()(AddItemForm));

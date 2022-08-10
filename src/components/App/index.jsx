@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style.css";
 import PfaksysNavbar from "../Navbar"
 import Sidebar from "../Sidebar";
+import PfaksysToastContainer from '../ToastContainer';
 import LoadingIndicator from "../LoadingIndicator";
 import ItemList from "../../feature/Items/List";
 import AddItemForm from "../../feature/Items/Add";
@@ -16,6 +17,10 @@ function App() {
             <Router>
                 <PfaksysNavbar />
                 <Sidebar />
+            
+                <PfaksysToastContainer
+                    ref={(toastContainer) => {window.toastContainer = toastContainer}}
+                />
 
                 <main>
                     <Routes>
@@ -26,6 +31,7 @@ function App() {
                     </Routes>
                 </main>
             </Router>
+
             <LoadingIndicator />
         </div>
     );
