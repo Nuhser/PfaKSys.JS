@@ -9,6 +9,7 @@ router.route('/').get(async (req, res) => {
     await User.find()
         .limit(limit)
         .skip(page * limit)
+        .collation({locale: 'de'})
         .sort({username: 'asc'})
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
