@@ -3,15 +3,13 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { t } from "i18next";
-import { withTranslation } from "react-i18next";
 import { trackPromise } from "react-promise-tracker";
 
 import InlineHelp from "../../../components/InlineHelp";
 import { showErrorToast, showSuccessToast } from "../../../components/Toast/service";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import { ItemCondition } from "../services/ItemCondition";
-import { withRouter } from "../../../services/withRouter";
+import { withRouterAndTranslation } from "../../../services/CustomWrappers";
 
 // TODO: Move this to modal
 class AddItemForm extends React.Component {
@@ -69,6 +67,8 @@ class AddItemForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
+        const { navigate, t } = this.props;
+
         const newItem = {
             name: this.state.name,
             no_quantity: this.state.no_quantity,
@@ -93,10 +93,10 @@ class AddItemForm extends React.Component {
                 })
 
                 if (e.target.name === 'saveButton') {
-                    this.props.navigate('/items');
+                    navigate('/items');
                 }
                 else {
-                    this.props.navigate(`/items/${res.data.id}`);
+                    navigate(`/items/${res.data.id}`);
                 }
         }).catch(
             error => {
@@ -222,4 +222,4 @@ class AddItemForm extends React.Component {
     }
 }
 
-export default withRouter(withTranslation()(AddItemForm));
+export default withRouterAndTranslation(AddItemForm);

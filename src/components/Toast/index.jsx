@@ -1,11 +1,12 @@
 import React from "react";
 import Toast from "react-bootstrap/Toast";
-import { withTranslation } from "react-i18next";
 import { AiOutlineInfoCircle } from "react-icons/ai"
 import { BiErrorAlt } from "react-icons/bi";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoWarningOutline } from "react-icons/io5";
 import { MdNotes } from "react-icons/md";
+
+import { withTranslation } from "../../services/CustomWrappers";
 
 import "./style.css";
 
@@ -100,4 +101,4 @@ class PfaksysToast extends React.Component {
     }
 }
 
-export default withTranslation()(PfaksysToast);
+export default withTranslation(PfaksysToast);

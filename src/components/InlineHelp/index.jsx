@@ -4,8 +4,9 @@ import Col from "react-bootstrap/Col";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Row from "react-bootstrap/Row";
-import { withTranslation } from "react-i18next";
 import { BsQuestionCircle } from "react-icons/bs";
+
+import { withTranslation } from "../../services/CustomWrappers";
 
 import "./style.css";
 
@@ -74,4 +75,4 @@ class InlineHelp extends React.Component {
     }
 }
 
-export default withTranslation() (InlineHelp);
+export default withTranslation(InlineHelp);

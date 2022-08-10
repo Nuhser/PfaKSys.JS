@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { withTranslation } from "react-i18next";
+import { withTranslation } from "../../services/CustomWrappers";
 
 import "./style.css"
 
@@ -29,4 +29,4 @@ class PfaksysNavbar extends React.Component {
     }
 }
 
-export default withTranslation() (PfaksysNavbar);
+export default withTranslation(PfaksysNavbar);

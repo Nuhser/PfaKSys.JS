@@ -1,8 +1,9 @@
+import axios from "axios";
 import React from 'react';
-import { withTranslation } from 'react-i18next';
 
 import Main from "../../../components/Main";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
+import { withRouterAndTranslation } from "../../../services/CustomWrappers";
 
 class ItemList extends React.Component {
     componentDidMount() {
@@ -10,11 +11,13 @@ class ItemList extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { queryParams, t } = this.props;
+        const page = queryParams.get('page');
 
         return (
             <Main title={t('common.material')}>
-                <Main.Header />
+                <Main.Header>
+                </Main.Header>
 
                 <Main.Body>
                     <p>Hello World!</p>
@@ -24,4 +27,4 @@ class ItemList extends React.Component {
     }
 }
 
-export default withTranslation()(ItemList);
+export default withRouterAndTranslation(ItemList);

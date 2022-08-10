@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { withTranslation } from "react-i18next";
 import { BiBox } from "react-icons/bi";
 import { BsCaretDownFill, BsCaretRight } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
+
+import { withTranslation } from "../../services/CustomWrappers";
 
 import "./style.css";
 
@@ -113,4 +114,4 @@ function enableSidebarDropdowns() {
     }
 }
 
-export default withTranslation()(Sidebar);
+export default withTranslation(Sidebar);
