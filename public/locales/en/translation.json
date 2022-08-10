@@ -13,6 +13,7 @@
         "users": "Users"
     },
     "items": {
+        "addedSuccess": "Item added successfully",
         "condition": "Condition",
         "conditions": {
             "unknown": "Unknown",

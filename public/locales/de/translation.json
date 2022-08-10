@@ -13,6 +13,7 @@
         "users": "Benutzer"
     },
     "items": {
+        "addedSuccess": "Artikel erfolgreich hinzugefügt",
         "condition": "Zustand",
         "conditions": {
             "unknown": "Unbekannt",
