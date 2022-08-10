@@ -1,10 +1,15 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
 
-
 // GET all users
-router.route('/').get((req, res) => {
-    User.find()
+router.route('/').get(async (req, res) => {
+    let page = req.query.page;
+    let limit = req.query.limit || 100;
+
+    await User.find()
+        .limit(limit)
+        .skip(page * limit)
+        .sort({username: 'asc'})
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
 });

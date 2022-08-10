@@ -1,10 +1,15 @@
 const router = require('express').Router();
 let Item = require('../models/item.model');
 
-
 // GET all items
-router.route('/').get((req, res) => {
-    Item.find()
+router.route('/').get(async (req, res) => {
+    let page = req.query.page;
+    let limit = req.query.limit || 100;
+
+    await Item.find()
+        .limit(limit)
+        .skip(page * limit)
+        .sort({name: 'asc'})
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
