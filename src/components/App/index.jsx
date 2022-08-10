@@ -3,10 +3,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./style.css";
+
+// general components
 import PfaksysNavbar from "../Navbar"
 import Sidebar from "../Sidebar";
 import PfaksysToastContainer from '../ToastContainer';
 import LoadingIndicator from "../LoadingIndicator";
+
+// feature pages
 import ItemList from "../../feature/Items/List";
 import AddItemForm from "../../feature/Items/Add";
 import UserList from "../../feature/Users/List";
