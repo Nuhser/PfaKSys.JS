@@ -11,8 +11,53 @@ router.route('/').get(async (req, res) => {
         .skip(page * limit)
         .collation({locale: 'de'})
         .sort({username: 'asc'})
-        .then(users => res.json(users))
+        .then(users => {
+            if (users.length === 0) {
+                res.json({ users: [], total: 0});
+            }
+            else {
+                User.count({})
+                    .then(
+                        count => res.json({ users: users, total: count })
+                    ).catch(
+                        err => res.status(400).json('Error: ' + err)
+                    );
+            }
+        })
         .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// POST new user
+router.route('/add').post((req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+
+    const newUser = new User({
+        username,
+        email
+    });
+
+    newUser.save()
+        .then(
+            (user) => res.json(
+                {
+                    id: user._id,
+                    message: `New user '${username}' was created!`,
+                    user: user
+                }
+        )).catch(
+            err => res.status(400).json('Error: ' + err)
+        );
+});
+
+// GET total user count
+router.route('/count').get(async (req, res) => {
+    await User.count({})
+        .then(
+            count => res.json({ total: count })
+        ).catch(
+            err => res.status(400).json('Error: ' + err)
+        );
 });
 
 // GET user by id
@@ -41,29 +86,6 @@ router.route('/:id').delete((req, res) => {
     User.findByIdAndDelete(req.params.id)
         .then(() => res.json(`User '${req.params.id}' was deleted!`))
         .catch(err => res.status(400).json('Error: ' + err));
-});
-
-// POST new user
-router.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const email = req.body.email;
-
-    const newUser = new User({
-        username,
-        email
-    });
-
-    newUser.save()
-        .then(
-            (user) => res.json(
-                {
-                    id: user._id,
-                    message: `New user '${username}' was created!`,
-                    user: user
-                }
-        )).catch(
-            err => res.status(400).json('Error: ' + err)
-        );
 });
 
 module.exports = router;

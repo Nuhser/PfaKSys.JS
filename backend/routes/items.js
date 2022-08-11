@@ -11,41 +11,19 @@ router.route('/').get(async (req, res) => {
         .skip(page * limit)
         .collation({locale: 'de'})
         .sort({name: 'asc'})
-        .then(items => res.json(items))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-// GET item by id
-router.route('/:id').get((req, res) => {
-    Item.findById(req.params.id)
-        .then(item => res.json(item))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-// UPDATE item by id
-router.route('/:id').put((req, res) => {
-    Item.findById(req.params.id)
-        .then(item => {
-            item.name = req.body.name;
-            item.no_quantity = req.body.no_quantity;
-            item.quantity = req.body.quantity;
-            item.condition = req.body.condition;
-            item.description = req.body.description;
-            item.images = req.body.images;
-            item.comments = req.body.comments;
-
-            item.save()
-                .then(() => res.json(`Item '${item.name}' was updated!`))
-                .catch(err => res.status(400).json('Error: ' + err));
-        })
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-// DELETE item by id
-router.route('/:id').delete((req, res) => {
-    Item.findByIdAndDelete(req.params.id)
-        .then(() => res.json(`Item '${req.params.id}' was deleted!`))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .then(items => {
+            if (items.length === 0) {
+                res.json({ items: [], total: 0});
+            }
+            else {
+                Item.count({})
+                    .then(
+                        count => res.json({ items: items, total: count })
+                    ).catch(
+                        err => res.status(400).json('Error: ' + err)
+                    );
+            }
+        }).catch(err => res.status(400).json('Error: ' + err));
 });
 
 // POST new item
@@ -79,6 +57,49 @@ router.route('/add').post((req, res) => {
         )).catch(
             err => res.status(400).json('Error: ' + err)
         );
+});
+
+// GET total item count
+router.route('/count').get(async (req, res) => {
+    await Item.count({})
+        .then(
+            count => res.json({ total: count })
+        ).catch(
+            err => res.status(400).json('Error: ' + err)
+        );
+});
+
+// GET item by id
+router.route('/:id').get((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// UPDATE item by id
+router.route('/:id').put((req, res) => {
+    Item.findById(req.params.id)
+        .then(item => {
+            item.name = req.body.name;
+            item.no_quantity = req.body.no_quantity;
+            item.quantity = req.body.quantity;
+            item.condition = req.body.condition;
+            item.description = req.body.description;
+            item.images = req.body.images;
+            item.comments = req.body.comments;
+
+            item.save()
+                .then(() => res.json(`Item '${item.name}' was updated!`))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// DELETE item by id
+router.route('/:id').delete((req, res) => {
+    Item.findByIdAndDelete(req.params.id)
+        .then(() => res.json(`Item '${req.params.id}' was deleted!`))
+        .catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
