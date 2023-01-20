@@ -42,9 +42,9 @@ const itemSchema = new mongoose.Schema({
         type: [itemCommentSchema]
     }
 },
-    {
-        timestamp: true
-    });
+{
+    timestamps: true
+});
 
 var itemCommentSchema = new mongoose.Schema({
     author: {
