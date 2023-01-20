@@ -43,7 +43,7 @@ export default class Main extends React.Component {
 
 export class Header extends React.Component {
     render() {
-        const { children} = this.props;
+        const { children } = this.props;
 
         return (
             <div>
@@ -58,7 +58,7 @@ Main.Header = Header;
 
 export class Body extends React.Component {
     render() {
-        const { children} = this.props;
+        const { children } = this.props;
 
         return (
             <div>
@@ -72,7 +72,7 @@ Main.Body = Body;
 
 export class Footer extends React.Component {
     render() {
-        const { children} = this.props;
+        const { children } = this.props;
 
         return (
             <div>

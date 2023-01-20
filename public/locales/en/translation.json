@@ -25,6 +25,7 @@
             "unhygienic": "Unhygienic",
             "other": "Other"
         },
+        "newItemTitle": "Create New Material",
         "noQuantity": "No Quantity",
         "noQuantityHelpTitle": "Quantity Settings",
         "noQuantityHelpText": "Click the checkbox at the end of the row if the item has no quantity or you don't know it.",

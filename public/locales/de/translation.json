@@ -13,7 +13,7 @@
         "users": "Benutzer"
     },
     "items": {
-        "addedSuccess": "Artikel erfolgreich hinzugefügt",
+        "addedSuccess": "Material erfolgreich hinzugefügt",
         "condition": "Zustand",
         "conditions": {
             "unknown": "Unbekannt",
@@ -25,6 +25,7 @@
             "unhygienic": "Unhygienisch",
             "other": "Sonstiges"
         },
+        "newItemTitle": "Neues Material anlegen",
         "noQuantity": "Keine Menge",
         "noQuantityHelpTitle": "Mengeneinstellungen",
         "noQuantityHelpText": "Aktiviere die Checkbox am Ende der Zeile, wenn das Material keine Menge hat oder du sie nicht weißt.",
