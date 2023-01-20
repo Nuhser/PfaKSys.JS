@@ -18,6 +18,7 @@ class AddItemForm extends React.Component {
         super(props);
 
         this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeInventoryId = this.onChangeInventoryId.bind(this);
         this.onChangeNoQuantity = this.onChangeNoQuantity.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onChangeCondition = this.onChangeCondition.bind(this);
@@ -26,6 +27,7 @@ class AddItemForm extends React.Component {
 
         this.state = {
             name: "",
+            inventory_id: "",
             no_quantity: false,
             quantity: 0,
             condition: "",
@@ -47,6 +49,10 @@ class AddItemForm extends React.Component {
 
     onChangeName(e) {
         this.setState({ name: e.target.value });
+    }
+
+    onChangeInventoryId(e) {
+        this.setState({ inventory_id: e.target.value })
     }
 
     onChangeNoQuantity(e) {
@@ -72,6 +78,7 @@ class AddItemForm extends React.Component {
 
         const newItem = {
             name: this.state.name,
+            inventory_id: this.state.inventory_id,
             no_quantity: this.state.no_quantity,
             quantity: this.state.no_quantity ? 0 : this.state.quantity,
             condition: this.state.condition,
@@ -150,28 +157,43 @@ class AddItemForm extends React.Component {
                             />
                         </Form.Group>
 
+                        <Form.Group className="mb-3" controlId="formInventoryId">
+                            <Form.Label>{t("items.inventoryId")}</Form.Label>
+                            <InlineHelp
+                                helpText="items.inventoryIdHelpText"
+                            >
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter inventory ID"
+                                    value={this.state.inventory_id}
+                                    maxLength={32}
+                                    onChange={this.onChangeInventoryId}
+                                />
+                            </InlineHelp>
+                        </Form.Group>
+
                         <Form.Group className="mb-3" controlId="formQuantity">
                             <Form.Label>{t("items.quantity")}</Form.Label>
-                                <InlineHelp
-                                    helpTitle="items.noQuantityHelpTitle"
-                                    helpText="items.noQuantityHelpText"
-                                >
-                                    <InputGroup>
-                                        <Form.Control
-                                            type="number"
-                                            value={this.state.quantity}
-                                            min={-1}
-                                            onChange={this.onChangeQuantity}
-                                            disabled={this.state.no_quantity}
-                                        />
-                                        <InputGroup.Text>{t('items.noQuantity')}</InputGroup.Text>
-                                        <InputGroup.Checkbox
-                                            checked={this.state.no_quantity}
-                                            onChange={this.onChangeNoQuantity}
-                                            aria-label="Item's quantity is unknown"
-                                        />
-                                    </InputGroup>
-                                </InlineHelp>
+                            <InlineHelp
+                                helpTitle="items.noQuantityHelpTitle"
+                                helpText="items.noQuantityHelpText"
+                            >
+                                <InputGroup>
+                                    <Form.Control
+                                        type="number"
+                                        value={this.state.quantity}
+                                        min={-1}
+                                        onChange={this.onChangeQuantity}
+                                        disabled={this.state.no_quantity}
+                                    />
+                                    <InputGroup.Text>{t('items.noQuantity')}</InputGroup.Text>
+                                    <InputGroup.Checkbox
+                                        checked={this.state.no_quantity}
+                                        onChange={this.onChangeNoQuantity}
+                                        aria-label="Item's quantity is unknown"
+                                    />
+                                </InputGroup>
+                            </InlineHelp>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formCondition">

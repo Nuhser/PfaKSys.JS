@@ -29,6 +29,7 @@ router.route('/').get(async (req, res) => {
 // POST new item
 router.route('/add').post((req, res) => {
     const name = req.body.name;
+    const inventory_id = req.body.inventory_id;
     const no_quantity = req.body.no_quantity;
     const quantity = req.body.quantity;
     const condition = req.body.condition;
@@ -38,6 +39,7 @@ router.route('/add').post((req, res) => {
 
     const newItem = new Item({
         name,
+        inventory_id,
         no_quantity,
         quantity,
         condition,
@@ -81,6 +83,7 @@ router.route('/:id').put((req, res) => {
     Item.findById(req.params.id)
         .then(item => {
             item.name = req.body.name;
+            item.inventory_id = req.body.inventory_id;
             item.no_quantity = req.body.no_quantity;
             item.quantity = req.body.quantity;
             item.condition = req.body.condition;

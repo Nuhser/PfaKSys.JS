@@ -11,6 +11,11 @@ const itemSchema = new mongoose.Schema({
         trim: true,
         maxlength: 100
     },
+    inventory_id: {
+        type: String,
+        trim: true,
+        maxlength: 32
+    },
     no_quantity: {
         type: Boolean,
         required: true,
