@@ -6,6 +6,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { trackPromise } from "react-promise-tracker";
 
 import InlineHelp from "../../../components/InlineHelp";
+import Main from "../../../components/Main";
 import { showErrorToast, showSuccessToast } from "../../../components/Toast/service";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
 import { ItemCondition } from "../services/ItemCondition";
@@ -17,6 +18,7 @@ class AddItemForm extends React.Component {
         super(props);
 
         this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeInventoryId = this.onChangeInventoryId.bind(this);
         this.onChangeNoQuantity = this.onChangeNoQuantity.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onChangeCondition = this.onChangeCondition.bind(this);
@@ -25,6 +27,7 @@ class AddItemForm extends React.Component {
 
         this.state = {
             name: "",
+            inventory_id: "",
             no_quantity: false,
             quantity: 0,
             condition: "",
@@ -46,6 +49,10 @@ class AddItemForm extends React.Component {
 
     onChangeName(e) {
         this.setState({ name: e.target.value });
+    }
+
+    onChangeInventoryId(e) {
+        this.setState({ inventory_id: e.target.value })
     }
 
     onChangeNoQuantity(e) {
@@ -71,6 +78,7 @@ class AddItemForm extends React.Component {
 
         const newItem = {
             name: this.state.name,
+            inventory_id: this.state.inventory_id,
             no_quantity: this.state.no_quantity,
             quantity: this.state.no_quantity ? 0 : this.state.quantity,
             condition: this.state.condition,
@@ -132,23 +140,40 @@ class AddItemForm extends React.Component {
         const { t } = this.props;
 
         return (
-            <div>
-                <h3>Create New Item</h3>
+            <Main title={t("items.newItemTitle")}>
+                <Main.Header>
+                </Main.Header>
 
-                <form onSubmit={this.onSubmit}>
-                    <Form.Group className="mb-3" controlId="formName">
-                        <Form.Label>{t("common.name")}</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter name"
-                            value={this.state.name}
-                            maxLength={100}
-                            onChange={this.onChangeName}
-                        />
-                    </Form.Group>
+                <Main.Body>
+                    <form onSubmit={this.onSubmit}>
+                        <Form.Group className="mb-3" controlId="formName">
+                            <Form.Label>{t("common.name")}</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter name"
+                                value={this.state.name}
+                                maxLength={100}
+                                onChange={this.onChangeName}
+                            />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formQuantity">
-                        <Form.Label>{t("items.quantity")}</Form.Label>
+                        <Form.Group className="mb-3" controlId="formInventoryId">
+                            <Form.Label>{t("items.inventoryId")}</Form.Label>
+                            <InlineHelp
+                                helpText="items.inventoryIdHelpText"
+                            >
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter inventory ID"
+                                    value={this.state.inventory_id}
+                                    maxLength={32}
+                                    onChange={this.onChangeInventoryId}
+                                />
+                            </InlineHelp>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formQuantity">
+                            <Form.Label>{t("items.quantity")}</Form.Label>
                             <InlineHelp
                                 helpTitle="items.noQuantityHelpTitle"
                                 helpText="items.noQuantityHelpText"
@@ -169,55 +194,56 @@ class AddItemForm extends React.Component {
                                     />
                                 </InputGroup>
                             </InlineHelp>
-                    </Form.Group>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formCondition">
-                        <Form.Label>{t("items.condition")}</Form.Label>
-                        <Form.Select
-                            value={this.state.condition}
-                            onChange={this.onChangeCondition}
+                        <Form.Group className="mb-3" controlId="formCondition">
+                            <Form.Label>{t("items.condition")}</Form.Label>
+                            <Form.Select
+                                value={this.state.condition}
+                                onChange={this.onChangeCondition}
+                            >
+                                {this.state.conditions.map((condition) => {
+                                    return (
+                                        <option key={condition} value={condition}>
+                                            {t(ItemCondition[condition])}
+                                        </option>
+                                    );
+                                })}
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formDescription">
+                            <Form.Label>{t("common.description")}</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                value={this.state.description}
+                                rows={5}
+                                maxLength={1000}
+                                onChange={this.onChangeDescription}
+                            />
+                        </Form.Group>
+
+                        <Button
+                            name="saveButton"
+                            variant="success"
+                            type="submit"
+                            onClick={this.onSubmit}
                         >
-                            {this.state.conditions.map((condition) => {
-                                return (
-                                    <option key={condition} value={condition}>
-                                        {t(ItemCondition[condition])}
-                                    </option>
-                                );
-                            })}
-                        </Form.Select>
-                    </Form.Group>
+                            {t("common.save")}
+                        </Button>
 
-                    <Form.Group className="mb-3" controlId="formDescription">
-                        <Form.Label>{t("common.description")}</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            value={this.state.description}
-                            rows={5}
-                            maxLength={1000}
-                            onChange={this.onChangeDescription}
-                        />
-                    </Form.Group>
-
-                    <Button
-                        name="saveButton"
-                        variant="success"
-                        type="submit"
-                        onClick={this.onSubmit}
-                    >
-                        {t("common.save")}
-                    </Button>
-
-                    <Button
-                        className="ms-2"
-                        name="saveAndDetailsButton"
-                        variant="success"
-                        type="submit"
-                        onClick={this.onSubmit}
-                    >
-                        {t("common.saveAndDetails")}
-                    </Button>
-                </form>
-            </div>
+                        <Button
+                            className="ms-2"
+                            name="saveAndDetailsButton"
+                            variant="success"
+                            type="submit"
+                            onClick={this.onSubmit}
+                        >
+                            {t("common.saveAndDetails")}
+                        </Button>
+                    </form>
+                </Main.Body>
+            </Main>
         );
     }
 }

@@ -29,6 +29,9 @@
             "unhygienic": "Unhygienic",
             "other": "Other"
         },
+        "inventoryId": "Inventory ID",
+        "inventoryIdHelpText": "Hint: You can use a barcode scanner to read the inventory ID of an item if you are inside the text field.",
+        "newItemTitle": "Create New Material",
         "noQuantity": "No Quantity",
         "noQuantityHelpTitle": "Quantity Settings",
         "noQuantityHelpText": "Click the checkbox at the end of the row if the item has no quantity or you don't know it.",

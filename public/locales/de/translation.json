@@ -17,7 +17,7 @@
         "users": "Benutzer"
     },
     "items": {
-        "addedSuccess": "Artikel erfolgreich hinzugefügt",
+        "addedSuccess": "Material erfolgreich hinzugefügt",
         "condition": "Zustand",
         "conditions": {
             "unknown": "Unbekannt",
@@ -29,6 +29,9 @@
             "unhygienic": "Unhygienisch",
             "other": "Sonstiges"
         },
+        "inventoryId": "Material ID",
+        "inventoryIdHelpText": "Tipp: Du kannst die Material ID auch mit einem Barcodescanner einlesen, wenn du dich im Textfeld befindest.",
+        "newItemTitle": "Neues Material anlegen",
         "noQuantity": "Keine Menge",
         "noQuantityHelpTitle": "Mengeneinstellungen",
         "noQuantityHelpText": "Aktiviere die Checkbox am Ende der Zeile, wenn das Material keine Menge hat oder du sie nicht weißt.",

@@ -1,4 +1,4 @@
-# PfaKSys.js (**Pfa**di-**K**eller-**S**ystem)
+# PfaKSys.JS (**Pfa**di-**K**eller-**S**ystem)
 
 > This project is currently under development and hasn't had a full release yet. The repository is mainly for version controlling and preparation purposes.
 
