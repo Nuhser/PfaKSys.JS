@@ -73,7 +73,7 @@ var itemCommentSchema = new mongoose.Schema({
     }
 },
     {
-        timestamp: true
+        timestamps: true
     });
 
 const Item = mongoose.model('Item', itemSchema);
