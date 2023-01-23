@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+let ItemCategory = require("../models/itemCategory.model");
 
 const ItemCondition = ['UNKNOWN', 'GOOD', 'OK', 'MOSTLY_OK', 'DAMAGED', 'IN_REPAIR', 'UNHYGIENIC', 'OTHER'];
 
@@ -27,6 +28,19 @@ const itemSchema = new mongoose.Schema({
         required: true,
         min: 0,
         default: 0
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ItemCategory',
+        validate: {
+            isAsync: true,
+            validator: function(arg) {
+                return ItemCategory.findById(arg)
+                    .then(category => category != null)
+                    .catch(false);
+            },
+            message: `'{VALUE}' is not a valid item category ID.`
+        }
     },
     condition: {
         type: String,
