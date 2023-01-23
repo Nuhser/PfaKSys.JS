@@ -13,6 +13,7 @@ const itemSchema = new mongoose.Schema({
     },
     inventory_id: {
         type: String,
+        unique: true,
         trim: true,
         maxlength: 32
     },
