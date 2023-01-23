@@ -5,8 +5,19 @@ let Item = require('../models/item.model');
 router.route('/').get(async (req, res) => {
     let page = req.query.page;
     let limit = req.query.limit || 100;
+    let name = req.query.name || '.*';
+    let inventory_id = req.query.inventoy_id || '.*';
+    let category = req.query.category || '.*';
+    let conditions = req.query.condition;
+    let description = req.query.description || '.*';
 
-    await Item.find()
+    await Item.find({
+        name: { $regex: name, $options: 'i' },
+        inventory_id: { $regex: inventory_id, $options: 'i' },
+        category: { $regex: category, $options: 'i' },
+        condition: conditions ? { $in: conditions.split(',') } : { $regex: /.*/},
+        description: { $regex: description, $optionis: 'i' }
+    })
         .limit(limit)
         .skip(page * limit)
         .collation({locale: 'de'})
