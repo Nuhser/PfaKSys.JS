@@ -3,6 +3,7 @@ let Item = require('../models/item.model');
 
 // GET all items
 router.route('/').get(async (req, res) => {
+    // TODO: Change category-filter to an array and add filters for no_quantity, quantity_min and quantity_max
     let page = req.query.page;
     let limit = req.query.limit || 100;
     let name = req.query.name || '.*';
