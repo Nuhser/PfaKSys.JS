@@ -3,7 +3,7 @@ let ItemCategory = require("../models/itemCategory.model");
 
 const ItemCondition = ['UNKNOWN', 'GOOD', 'OK', 'MOSTLY_OK', 'DAMAGED', 'IN_REPAIR', 'UNHYGIENIC', 'OTHER'];
 
-// TODO: Add category and location.
+// TODO: Add location.
 // Follow this system: https://stackoverflow.com/questions/43159336/what-to-do-with-enum-values-in-mongoose
 const itemSchema = new mongoose.Schema({
     name: {

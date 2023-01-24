@@ -94,7 +94,7 @@ router.route('/add').post((req, res) => {
 
     newItem.save()
         .then(
-            (item) => res.json(
+            item => res.status(201).json(
                 {
                     id: item._id,
                     message: `New item '${name}' was created!`,
@@ -121,36 +121,52 @@ router.route('/count').get(async (req, res) => {
 router.route('/:id').get((req, res) => {
     Item.findById(req.params.id)
         .populate('category', 'name')
-        .then(item => res.json(item))
+        .then(item => {
+            if (item === null) {
+                res.status(404).json({name: 'IdNotFoundError', value: req.params.id, message: `No item with the ID '${req.params.id}' found.`});
+            }
+            else {
+                res.json(item);
+            }
+        })
         .catch(err => res.status(400).json(err));
 });
 
 // UPDATE item by id
 router.route('/:id').put((req, res) => {
-    Item.findById(req.params.id)
-        .then(item => {
-            item.name = req.body.name;
-            item.inventory_id = req.body.inventory_id;
-            item.no_quantity = req.body.no_quantity;
-            item.quantity = req.body.quantity;
-            item.category = req.body.category;
-            item.condition = req.body.condition;
-            item.description = req.body.description;
-            item.images = req.body.images;
-            item.comments = req.body.comments;
-
-            item.save()
-                .then(() => res.json(`Item '${item.name}' was updated!`))
-                .catch(err => res.status(400).json(err));
-        })
-        .catch(err => res.status(400).json(err));
+    Item.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after', runValidators: true})
+        .then(
+            item => {
+                if (item === null) {
+                    res.status(404).json({name: 'IdNotFoundError', value: req.params.id, message: `No item with the ID '${req.params.id}' found.`});
+                }
+                else {
+                    res.json(item);
+                }
+            }
+        ).catch(
+            err => res.status(400).json(err)
+        );
 });
 
 // DELETE item by id
 router.route('/:id').delete((req, res) => {
-    Item.findByIdAndDelete(req.params.id)
-        .then(() => res.json(`Item '${req.params.id}' was deleted!`))
-        .catch(err => res.status(400).json(err));
+    Item.findByIdAndRemove(req.params.id)
+    .then(item => {
+        if (item === null) {
+            res.status(404).json({name: 'IdNotFoundError', value: req.params.id, message: `No item with the ID '${req.params.id}' found.`});
+        }
+        else {
+            res.json(
+                {
+                    id: item._id,
+                    message: `Item '${item.name}' was deleted!`,
+                    item: item
+                }
+            );
+        }
+    })
+    .catch(err => res.status(400).json(err));
 });
 
 module.exports = router;
