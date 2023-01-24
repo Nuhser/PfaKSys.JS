@@ -62,10 +62,10 @@ router.route('/').get(async (req, res) => {
                     .then(
                         count => res.json({ items: items, total: count, filter: itemFilter })
                     ).catch(
-                        err => res.status(400).json('Error: ' + err)
+                        err => res.status(400).json(err)
                     );
             }
-        }).catch(err => res.status(400).json('Error: ' + err));
+        }).catch(err => res.status(400).json(err));
 });
 
 // POST new item
@@ -101,7 +101,7 @@ router.route('/add').post((req, res) => {
                     item: item
                 }
         )).catch(
-            err => res.status(400).json('Error: ' + err)
+            err => res.status(400).json(err)
         );
 });
 
@@ -113,7 +113,7 @@ router.route('/count').get(async (req, res) => {
         .then(
             count => res.json({total: count, filter: itemFilter})
         ).catch(
-            err => res.status(400).json('Error: ' + err)
+            err => res.status(400).json(err)
         );
 });
 
@@ -122,7 +122,7 @@ router.route('/:id').get((req, res) => {
     Item.findById(req.params.id)
         .populate('category', 'name')
         .then(item => res.json(item))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json(err));
 });
 
 // UPDATE item by id
@@ -141,16 +141,16 @@ router.route('/:id').put((req, res) => {
 
             item.save()
                 .then(() => res.json(`Item '${item.name}' was updated!`))
-                .catch(err => res.status(400).json('Error: ' + err));
+                .catch(err => res.status(400).json(err));
         })
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json(err));
 });
 
 // DELETE item by id
 router.route('/:id').delete((req, res) => {
     Item.findByIdAndDelete(req.params.id)
         .then(() => res.json(`Item '${req.params.id}' was deleted!`))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json(err));
 });
 
 module.exports = router;
