@@ -1,25 +1,39 @@
 const router = require('express').Router();
 let ItemCategory = require('../models/itemCategory.model');
 
+function createItemCategoryFilter(request) {
+    let itemCategoryFilter = {$and: []};
+
+    if (request.query.name) {
+        itemCategoryFilter.$and.push({name: {$regex: request.query.name, $options: 'i'}});
+    }
+
+    if (itemCategoryFilter.$and.length < 1) {
+        delete itemCategoryFilter.$and;
+    }
+
+    return itemCategoryFilter;
+}
+
 // GET all item categories
 router.route('/').get(async (req, res) => {
     let page = req.query.page;
     let limit = req.query.limit || 100;
-    let name = req.query.name || '.*';
+    let categoryFilter = createItemCategoryFilter(req);
 
-    await ItemCategory.find({ name: { $regex: name, $options: 'i' }})
+    await ItemCategory.find(categoryFilter)
         .limit(limit)
         .skip(page * limit)
         .collation({locale: 'de'})
         .sort({name: 'asc'})
         .then(categories => {
             if (categories.length === 0) {
-                res.json({itemCategories: [], total: 0});
+                res.json({itemCategories: [], total: 0, filter: categoryFilter});
             }
             else {
-                ItemCategory.count({})
+                ItemCategory.count(categoryFilter)
                     .then(
-                        count => res.json({itemCategories: categories, total: count})
+                        count => res.json({itemCategories: categories, total: count, filter: categoryFilter})
                     ).catch(
                         err => res.status(400).json('Error: ' + err)
                     );
