@@ -109,7 +109,7 @@ router.route('/add').post((req, res) => {
 router.route('/count').get(async (req, res) => {
     let itemFilter = createItemFilter(req);
 
-    await Item.count({itemFilter})
+    await Item.count(itemFilter)
         .then(
             count => res.json({total: count, filter: itemFilter})
         ).catch(
