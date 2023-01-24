@@ -1,6 +1,7 @@
 import React from "react";
 import ToastContainer from "react-bootstrap/ToastContainer";
 
+// TODO: Make container stick to bottom when scrolling
 export default class PfaksysToastContainer extends React.Component {
     constructor(props) {
         super(props);
