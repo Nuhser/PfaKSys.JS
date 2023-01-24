@@ -107,9 +107,11 @@ router.route('/add').post((req, res) => {
 
 // GET total item count
 router.route('/count').get(async (req, res) => {
-    await Item.count({})
+    let itemFilter = createItemFilter(req);
+
+    await Item.count({itemFilter})
         .then(
-            count => res.json({ total: count })
+            count => res.json({total: count, filter: itemFilter})
         ).catch(
             err => res.status(400).json('Error: ' + err)
         );
