@@ -3,7 +3,7 @@ let ItemCategory = require("../models/itemCategory.model");
 
 const ItemCondition = ['UNKNOWN', 'GOOD', 'OK', 'MOSTLY_OK', 'DAMAGED', 'IN_REPAIR', 'UNHYGIENIC', 'OTHER'];
 
-// TODO: Add category and location.
+// TODO: Add location.
 // Follow this system: https://stackoverflow.com/questions/43159336/what-to-do-with-enum-values-in-mongoose
 const itemSchema = new mongoose.Schema({
     name: {
@@ -16,7 +16,8 @@ const itemSchema = new mongoose.Schema({
         type: String,
         unique: true,
         trim: true,
-        maxlength: 32
+        maxlength: 32,
+        default: null
     },
     no_quantity: {
         type: Boolean,
@@ -40,7 +41,8 @@ const itemSchema = new mongoose.Schema({
                     .catch(false);
             },
             message: `'{VALUE}' is not a valid item category ID.`
-        }
+        },
+        default: null
     },
     condition: {
         type: String,
@@ -49,11 +51,12 @@ const itemSchema = new mongoose.Schema({
             values: ItemCondition,
             message: 'Invalid item condition ({VALUE}). Please use one of the following: ' + ItemCondition.join(', ')
         },
-        default: 'unknown'
+        default: 'UNKNOWN'
     },
     description: {
         type: String,
-        maxlength: 1000
+        maxlength: 1000,
+        default: null
     },
     images: {
         type: [String]
