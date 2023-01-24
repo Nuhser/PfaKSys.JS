@@ -5,38 +5,38 @@ function createItemFilter(request) {
     let itemFilter = {$and: []};
 
     if (request.query.name) {
-        itemFilter['$and'].push({name: {$regex: request.query.name, $options: 'i'}});
+        itemFilter.$and.push({name: {$regex: request.query.name, $options: 'i'}});
     }
 
     if (request.query.inventory_id) {
-        itemFilter['$and'].push({inventory_id: {$regex: request.query.inventory_id, $options: 'i'}});
+        itemFilter.$and.push({inventory_id: {$regex: request.query.inventory_id, $options: 'i'}});
     }
     else {
-        itemFilter['$and'].push({$or: [{inventory_id: {$exists: false}}, {inventory_id: {$regex: '.*'}}]});
+        itemFilter.$and.push({$or: [{inventory_id: {$exists: false}}, {inventory_id: {$regex: '.*'}}]});
     }
 
     if (request.query.no_quantity) {
-        itemFilter['$and'].push({no_quantity: request.query.no_quantity});
+        itemFilter.$and.push({no_quantity: request.query.no_quantity});
     }
 
     if (request.query.quantity_min) {
-        itemFilter['$and'].push({quantity: {$gte: request.query.quantity_min}});
+        itemFilter.$and.push({quantity: {$gte: request.query.quantity_min}});
     }
 
     if (request.query.quantity_max) {
-        itemFilter['$and'].push({quantity: {$lte: request.query.quantity_max}});
+        itemFilter.$and.push({quantity: {$lte: request.query.quantity_max}});
     }
 
     if (request.query.categories) {
-        itemFilter['$and'].push({category: {$in: request.query.categories.split(',')}});
+        itemFilter.$and.push({category: {$in: request.query.categories.split(',')}});
     }
 
     if (request.query.conditions) {
-        itemFilter['$and'].push({condition: {$in: request.query.conditions.split(',')}});
+        itemFilter.$and.push({condition: {$in: request.query.conditions.split(',')}});
     }
 
     if (request.query.description) {
-        itemFilter['$and'].push({description: {$regex: request.query.description, $options: 'i'}});
+        itemFilter.$and.push({description: {$regex: request.query.description, $options: 'i'}});
     }
 
     return itemFilter;
