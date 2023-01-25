@@ -16,8 +16,7 @@ const itemSchema = new mongoose.Schema({
         type: String,
         unique: true,
         trim: true,
-        maxlength: 32,
-        default: null
+        maxlength: 32
     },
     no_quantity: {
         type: Boolean,
@@ -41,8 +40,7 @@ const itemSchema = new mongoose.Schema({
                     .catch(false);
             },
             message: `'{VALUE}' is not a valid item category ID.`
-        },
-        default: null
+        }
     },
     condition: {
         type: String,
@@ -55,8 +53,7 @@ const itemSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        maxlength: 1000,
-        default: null
+        maxlength: 1000
     },
     images: {
         type: [String]
