@@ -2,6 +2,7 @@
     "common": {
         "add": "Hinzufügen",
         "calendar": "Kalender",
+        "category": "Kategorie",
         "delete": "Löschen",
         "description": "Beschreibung",
         "edit": "Bearbeiten",

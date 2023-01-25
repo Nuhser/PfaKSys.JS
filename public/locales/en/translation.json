@@ -2,6 +2,7 @@
     "common": {
         "add": "Add",
         "calendar": "Calendar",
+        "category": "Category",
         "delete": "Delete",
         "description": "Description",
         "edit": "Edit",

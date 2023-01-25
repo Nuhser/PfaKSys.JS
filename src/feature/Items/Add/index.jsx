@@ -21,6 +21,7 @@ class AddItemForm extends React.Component {
         this.onChangeInventoryId = this.onChangeInventoryId.bind(this);
         this.onChangeNoQuantity = this.onChangeNoQuantity.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
+        this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onChangeCondition = this.onChangeCondition.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -30,10 +31,12 @@ class AddItemForm extends React.Component {
             inventory_id: "",
             no_quantity: false,
             quantity: 0,
+            category: "",
             condition: "",
             description: "",
     
-            conditions: []
+            conditions: [],
+            categories: []
         };
     }
 
@@ -41,7 +44,16 @@ class AddItemForm extends React.Component {
     componentDidMount() {
         setActiveSidebarItem('itemsAddSidebarItem')
 
+        trackPromise(axios.get(
+            'http://localhost:5000/itemCategories'
+        ).then(
+            res => this.setState({ categories: [''].concat(res.data.itemCategories) })
+        ).catch(
+            error => console.log(error)
+        ));
+
         this.setState({
+            category: '',
             conditions: Object.keys(ItemCondition),
             condition: 'UNKNOWN'
         });
@@ -61,6 +73,10 @@ class AddItemForm extends React.Component {
 
     onChangeQuantity(e) {
         this.setState({ quantity: e.target.value });
+    }
+
+    onChangeCategory(e) {
+        this.setState({ category: e.target.value });
     }
 
     onChangeCondition(e) {
@@ -84,6 +100,10 @@ class AddItemForm extends React.Component {
             condition: this.state.condition,
             description: this.state.description
         };
+
+        if (this.state.category !== '') {
+            newItem.category = this.state.category;
+        }
 
         console.log('POST: /items/add\n', newItem);
 
@@ -196,13 +216,36 @@ class AddItemForm extends React.Component {
                             </InlineHelp>
                         </Form.Group>
 
+                        <Form.Group className="mb-3" controlId="formCategory">
+                            <Form.Label>{t("common.category")}</Form.Label>
+                            <Form.Select
+                                value={this.state.category?._id}
+                                onChange={this.onChangeCategory}
+                            >
+                                {this.state.categories.map(category => {
+                                    if (category === ''){
+                                        return (
+                                            <option key="" value="" />
+                                        );
+                                    }
+                                    else {
+                                        return (
+                                            <option key={category._id} value={category._id}>
+                                                {category.name}
+                                            </option>
+                                        );
+                                    }
+                                })}
+                            </Form.Select>
+                        </Form.Group>
+
                         <Form.Group className="mb-3" controlId="formCondition">
                             <Form.Label>{t("items.condition")}</Form.Label>
                             <Form.Select
                                 value={this.state.condition}
                                 onChange={this.onChangeCondition}
                             >
-                                {this.state.conditions.map((condition) => {
+                                {this.state.conditions.map(condition => {
                                     return (
                                         <option key={condition} value={condition}>
                                             {t(ItemCondition[condition])}
