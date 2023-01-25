@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { trackPromise } from "react-promise-tracker";
 
+import AddItemModal from "../AddModal/";
 import ItemOverviewCard from "../OverviewCard";
 import Main from "../../../components/Main";
 import PaginatedOverview from "../../../components/PaginatedOverview";
@@ -12,11 +14,16 @@ class ItemList extends React.Component {
     constructor(props) {
         super(props);
 
+        this.enableAddItemModal = this.enableAddItemModal.bind(this);
+        this.disableAddItemModal = this.disableAddItemModal.bind(this);
+
         this.state = {
             items: [],
             total: 0,
             page: 0,
-            limit: 10
+            limit: 10,
+
+            showAddItemModal: false
         };
     }
 
@@ -45,6 +52,14 @@ class ItemList extends React.Component {
         ));
     }
 
+    enableAddItemModal() {
+        this.setState({ showAddItemModal: true });
+    }
+
+    disableAddItemModal() {
+        this.setState({ showAddItemModal: false });
+    }
+
     componentDidMount() {
         setActiveSidebarItem('itemsOverviewSidebarItem');
         this.getItemList();
@@ -65,6 +80,15 @@ class ItemList extends React.Component {
                 </Main.Header>
 
                 <Main.Body>
+                    <Button className="mb-3" variant="success" onClick={this.enableAddItemModal}>
+                        TEST
+                    </Button>
+
+                    <AddItemModal
+                        show={this.state.showAddItemModal}
+                        onClose={this.disableAddItemModal}
+                    />
+
                     <PaginatedOverview
                         url="/items"
                         elements={this.state.items}
