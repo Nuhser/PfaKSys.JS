@@ -35,7 +35,7 @@ class InlineHelp extends React.Component {
                                 </Popover>
                             }
                         >
-                            <Button className="inline-help" variant="light">
+                            <Button className="inline-help" variant="light" tabIndex={-1}>
                                 <BsQuestionCircle size="18" />
                             </Button>
                         </OverlayTrigger>
@@ -64,7 +64,7 @@ class InlineHelp extends React.Component {
                                 </Popover>
                             }
                         >
-                            <Button className="inline-help" variant="light">
+                            <Button className="inline-help" variant="light" tabIndex={-1}>
                                 <BsQuestionCircle size="18" />
                             </Button>
                         </OverlayTrigger>
