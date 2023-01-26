@@ -163,6 +163,7 @@ class AddItemModal extends React.Component {
                 show={show}
                 onHide={onClose}
                 backdrop="static"
+                centered
             >
                 <Modal.Header closeButton>
                     <Modal.Title>{t("items.newItemTitle")}</Modal.Title>
