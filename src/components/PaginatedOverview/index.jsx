@@ -30,7 +30,7 @@ class PaginatedOverview extends React.Component {
                             onClick={() => {
                                 navigate(`${url}?page=${Math.max(0, parseInt(page)-1)}`);
                             }}
-                            disabled={page == 0}
+                            disabled={Number(page) === 0}
                         >
                             <FaChevronLeft size="18" />
                         </Button>
@@ -39,11 +39,10 @@ class PaginatedOverview extends React.Component {
                             [...Array(pageCount)].map(
                                 (e, i) => (
                                     <Button
-                                        variant={page == i ? 'primary' : 'secondary'}
+                                        variant={Number(page) === i ? 'primary' : 'secondary'}
                                         onClick={() => {
                                             navigate(`${url}?page=${i}`);
                                         }}
-                                        disabled={page == i}
                                     >
                                         {i+1}
                                     </Button>
@@ -56,7 +55,7 @@ class PaginatedOverview extends React.Component {
                             onClick={() => {
                                 navigate(`${url}?page=${Math.min(pageCount-1, parseInt(page)+1)}`);
                             }}
-                            disabled={page == pageCount-1}
+                            disabled={Number(page) === pageCount-1}
                         >
                             <FaChevronRight size="18" />
                         </Button>
