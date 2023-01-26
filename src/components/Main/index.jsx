@@ -27,9 +27,7 @@ export default class Main extends React.Component {
                     </div>
                 )}
 
-                <div className="body">
-                    {body}
-                </div>
+                {body}
 
                 {footer.length > 0 && (
                     <div className="footer">
@@ -58,10 +56,10 @@ Main.Header = Header;
 
 export class Body extends React.Component {
     render() {
-        const { children } = this.props;
+        const { largeHeader, children } = this.props;
 
         return (
-            <div>
+            <div className={'body ' + (largeHeader ? 'large-header' : 'small-header')}>
                 {children}
             </div>
         );

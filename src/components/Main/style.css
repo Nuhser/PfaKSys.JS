@@ -1,10 +1,30 @@
+:root {
+    --smallHeader: 66px;
+    --largeHeader: 100px;
+}
+
 .header {
+    position: fixed;
+    width: 100%;
     padding: 12px;
+    top: var(--navbarHeight);
+    z-index: 100;
     background-color: #f1f1f1;
 }
 
 .body {
+    float: left;
+    width: 100%;
     padding: 12px;
+    z-index: 1;
+}
+
+.body.small-header {
+    margin-top: var(--smallHeader);
+}
+
+.body.large-header {
+    margin-top: var(--largeHeader);
 }
 
 .footer {
@@ -12,5 +32,6 @@
     width: 100%;
     padding: 12px;
     bottom: 0;
+    z-index: 100;
     background-color: #f1f1f1;
 }

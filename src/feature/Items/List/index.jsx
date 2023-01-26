@@ -77,13 +77,12 @@ class ItemList extends React.Component {
         return (
             <Main title={t('common.material')}>
                 <Main.Header>
+                    <Button variant="success" size="sm" onClick={this.enableAddItemModal}>
+                        TEST - New Item
+                    </Button>
                 </Main.Header>
 
-                <Main.Body>
-                    <Button className="mb-3" variant="success" onClick={this.enableAddItemModal}>
-                        TEST
-                    </Button>
-
+                <Main.Body largeHeader>
                     <AddItemModal
                         show={this.state.showAddItemModal}
                         onClose={this.disableAddItemModal}
