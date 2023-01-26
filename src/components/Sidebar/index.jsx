@@ -33,12 +33,6 @@ class Sidebar extends React.Component {
                             key="items.overview"
                             text={t('common.overview')}
                             link="/items"
-                        />,
-                        <SidebarItem
-                            id="itemsAddSidebarItem"
-                            key="items.add"
-                            text={t('common.add')}
-                            link="/items/add"
                         />
                     ]}
                 />

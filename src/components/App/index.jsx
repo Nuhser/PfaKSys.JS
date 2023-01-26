@@ -12,7 +12,6 @@ import LoadingIndicator from "../LoadingIndicator";
 
 // feature pages
 import ItemList from "../../feature/Items/List";
-import AddItemForm from "../../feature/Items/Add";
 import UserList from "../../feature/Users/List";
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
                     <Routes>
                         <Route path="/" exact element={<p>Hello World!</p>} />
                         <Route path="/items" element={<ItemList />} />
-                        <Route path="/items/add" element={<AddItemForm />} />
                         <Route path="/users" element={<UserList />} />
                     </Routes>
                 </main>
