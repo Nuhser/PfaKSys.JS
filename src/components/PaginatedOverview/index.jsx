@@ -12,18 +12,18 @@ class PaginatedOverview extends React.Component {
 
         return (
             <div>
-                {
-                    elements.map(
-                        (element) => (
-                            <OverviewCardComponent
-                                key={element.id}
-                                element={element}
-                            />
-                        )
-                    )
-                }
-                
-                <div className="d-flex justify-content-center align-items-end mt-5">
+                        {
+                            elements.map(
+                                (element) => (
+                                    <OverviewCardComponent
+                                        key={element.id}
+                                        element={element}
+                                    />
+                                )
+                            )
+                        }
+
+                <div className="d-flex justify-content-center mt-5">
                     <ButtonGroup>
                         <Button
                             variant="secondary"
