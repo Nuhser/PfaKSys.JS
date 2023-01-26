@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { trackPromise } from "react-promise-tracker";
 
-import AddItemModal from "../AddModal/";
+import AddItemModal from "../Add/";
 import ItemOverviewCard from "../OverviewCard";
 import Main from "../../../components/Main";
 import PaginatedOverview from "../../../components/PaginatedOverview";
