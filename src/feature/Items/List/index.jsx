@@ -70,20 +70,6 @@ class ItemList extends React.Component {
         this.setState({ showAddItemModal: false });
     }
 
-    componentDidMount() {
-        setActiveSidebarItem('itemsOverviewSidebarItem');
-        this.getItemList();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.filter !== prevState.filter
-            || this.state.page !== prevState.page
-            || this.state.limit !== prevState.limit) {
-
-            this.getItemList();
-        }
-    }
-
     onChangeNameFilter(e) {
         let filter = this.state.filter;
         filter.name = e.target.value;
@@ -94,6 +80,20 @@ class ItemList extends React.Component {
         });
     }
 
+    componentDidMount() {
+        setActiveSidebarItem('itemsOverviewSidebarItem');
+        this.getItemList();
+    }
+
+    componentDidUpdate(_prevProps, prevState) {
+        if (this.state.filter !== prevState.filter
+            || this.state.page !== prevState.page
+            || this.state.limit !== prevState.limit) {
+
+            this.getItemList();
+        }
+    }
+
     render() {
         const { t } = this.props;
 
@@ -102,7 +102,7 @@ class ItemList extends React.Component {
                 <Main.Header>
                     <Button variant="success" size="sm" onClick={this.enableAddItemModal}>
                         <IoMdAdd size="20" className="me-1" />
-                        {t('items.createNew')}
+                        {t('common.createNew')}
                     </Button>
                 </Main.Header>
 

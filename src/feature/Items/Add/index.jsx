@@ -175,7 +175,6 @@ class AddItemModal extends React.Component {
                             <Form.Label>{t("common.name")}</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Enter name"
                                 value={this.state.name}
                                 maxLength={100}
                                 onChange={this.onChangeName}
@@ -190,7 +189,6 @@ class AddItemModal extends React.Component {
                             >
                                 <Form.Control
                                     type="text"
-                                    placeholder="Enter inventory ID"
                                     value={this.state.inventory_id}
                                     maxLength={32}
                                     onChange={this.onChangeInventoryId}
