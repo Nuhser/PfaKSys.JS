@@ -21,45 +21,49 @@ class PaginatedOverview extends React.Component {
                     )
                 }
 
+                {pageCount > 1 && (
                     <div className="d-flex justify-content-center mt-5">
                         <ButtonGroup>
                             <Button
                                 variant="secondary"
                                 onClick={() => {
                                     setPageMethod(Math.max(0, parseInt(page)-1));
-                            }}
-                            disabled={Number(page) === 0}
-                        >
-                            <FaChevronLeft size="18" />
-                        </Button>
+                                }}
+                                disabled={Number(page) === 0}
+                            >
+                                <FaChevronLeft size="18" />
+                            </Button>
 
-                        {
-                            [...Array(pageCount)].map(
-                                (e, i) => (
-                                    <Button
-                                        variant={Number(page) === i ? 'primary' : 'secondary'}
-                                        onClick={() => {
+                            {
+                                [...Array(pageCount)].map(
+                                    (e, i) => (
+                                        <Button
+                                            variant={Number(page) === i ? 'primary' : 'secondary'}
+                                            onClick={() => {
                                                 setPageMethod(i);
-                                        }}
-                                    >
-                                        {i+1}
-                                    </Button>
+                                            }}
+                                        >
+                                            {i+1}
+                                        </Button>
+                                    )
                                 )
-                            )
-                        }
+                            }
 
-                        <Button
-                            variant="secondary"
+                            <Button
+                                variant="secondary"
+                                onClick={() => {
                                     setPageMethod(Math.min(pageCount-1, parseInt(page)+1));
-                            disabled={Number(page) === pageCount-1}
-                        >
-                            <FaChevronRight size="18" />
-                        </Button>
-                    </ButtonGroup>
-                </div>
+                                }}
+                                disabled={Number(page) === pageCount-1}
+                            >
+                                <FaChevronRight size="18" />
+                            </Button>
+                        </ButtonGroup>
+                    </div>
+                )}
             </div>
         );
     }
 }
 
-export default withRouter(PaginatedOverview);
+export default PaginatedOverview;
