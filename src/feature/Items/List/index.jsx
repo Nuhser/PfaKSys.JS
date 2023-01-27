@@ -1,10 +1,7 @@
 import axios from "axios";
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -91,7 +88,10 @@ class ItemList extends React.Component {
         let filter = this.state.filter;
         filter.name = e.target.value;
 
-        this.setState({ filter: { name: e.target.value } });
+        this.setState({
+            page: 0,
+            filter: { name: e.target.value }
+        });
     }
 
     render() {
@@ -131,10 +131,10 @@ class ItemList extends React.Component {
                     </ButtonToolbar>
 
                     <PaginatedOverview
-                        url="/items"
                         elements={this.state.items}
                         total={this.state.total}
                         page={this.state.page}
+                        setPageMethod={(value) => this.setState({ page: value })}
                         limit={this.state.limit}
                         OverviewCardComponent={ItemOverviewCard}
                     />
