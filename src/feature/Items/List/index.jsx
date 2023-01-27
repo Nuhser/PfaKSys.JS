@@ -10,6 +10,7 @@ import { IoMdAdd } from 'react-icons/io';
 import { trackPromise } from "react-promise-tracker";
 
 import AddItemModal from "../AddModal";
+import FilterItemModal from "../FilterModal";
 import ItemOverviewCard from "../OverviewCard";
 import Main from "../../../components/Main";
 import PaginatedOverview from "../../../components/PaginatedOverview";
@@ -23,6 +24,8 @@ class ItemList extends React.Component {
         this.onChangeNameFilter = this.onChangeNameFilter.bind(this);
         this.enableAddItemModal = this.enableAddItemModal.bind(this);
         this.disableAddItemModal = this.disableAddItemModal.bind(this);
+        this.enableFilterItemModal = this.enableFilterItemModal.bind(this);
+        this.disableFilterItemModal = this.disableFilterItemModal.bind(this);
 
         this.state = {
             items: [],
@@ -32,7 +35,8 @@ class ItemList extends React.Component {
 
             filter: {},
 
-            showAddItemModal: false
+            showAddItemModal: false,
+            showFilterItemModal: false
         };
     }
 
@@ -68,6 +72,14 @@ class ItemList extends React.Component {
 
     disableAddItemModal() {
         this.setState({ showAddItemModal: false });
+    }
+
+    enableFilterItemModal() {
+        this.setState({ showFilterItemModal: true });
+    }
+
+    disableFilterItemModal() {
+        this.setState({ showFilterItemModal: false });
     }
 
     onChangeNameFilter(e) {
@@ -112,6 +124,11 @@ class ItemList extends React.Component {
                         onClose={this.disableAddItemModal}
                     />
 
+                    <FilterItemModal
+                        show={this.state.showFilterItemModal}
+                        onHide={this.disableFilterItemModal}
+                    />
+
                     <ButtonToolbar className="d-flex justify-content-center mb-3">
                         <InputGroup style={{minWidth: '50%'}}>
                             <InputGroup.Text>
@@ -124,7 +141,11 @@ class ItemList extends React.Component {
                             />
                         </InputGroup>
 
-                        <Button variant="primary" className="ms-2">
+                        <Button 
+                            variant="primary"
+                            onClick={this.enableFilterItemModal}
+                            className="ms-2"
+                        >
                             <FiFilter size="20" className="me-1" />
                             {t('common.filter')}
                         </Button>
