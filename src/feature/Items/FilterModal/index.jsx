@@ -13,12 +13,9 @@ import { withTranslation } from '../../../services/CustomWrappers';
 class FilterItemsModal extends React.Component {
     constructor(props) {
         super(props);
-        const { filterConditions, filterCategories } = this.props;
 
         this.state = {
-            filterConditions: filterConditions,
             conditions: [],
-            filterCategories: filterCategories,
             categories: []
         }
     }
@@ -38,7 +35,7 @@ class FilterItemsModal extends React.Component {
     }
     
     render() {
-        const { filter, show, onHide, t } = this.props;
+        const { conditionFilter, onChangeConditionFilter, categoryFilter, onChangeCategoryFilter, show, onHide, t } = this.props;
 
         return (
             <Modal
@@ -64,10 +61,12 @@ class FilterItemsModal extends React.Component {
                                     this.state.conditions.map(
                                         condition => (
                                             <Form.Check
-                                                type='checkbox'
+                                                type='switch'
                                                 id={`conditionFilter_${condition}`}
                                                 key={`conditionFilter_${condition}`}
                                                 label={t(ItemCondition[condition])}
+                                                checked={conditionFilter.includes(condition)}
+                                                onChange={(e) => onChangeConditionFilter(condition, e.target.checked)}
                                             />
                                         )
                                     )
@@ -79,10 +78,12 @@ class FilterItemsModal extends React.Component {
                                     this.state.categories.map(
                                         category => (
                                             <Form.Check
-                                                type='checkbox'
+                                                type='switch'
                                                 id={`categoryFilter_${category._id}`}
                                                 key={`categoryFilter_${category._id}`}
                                                 label={category.name}
+                                                checked={categoryFilter.includes(category._id)}
+                                                onChange={(e) => onChangeCategoryFilter(category._id, e.target.checked)}
                                             />
                                         )
                                     )
@@ -95,23 +96,6 @@ class FilterItemsModal extends React.Component {
                             </Tab>
                         </Tabs>
                     </Modal.Body>
-
-                    <Modal.Footer>
-                        <Button
-                            name="filterButton"
-                            variant="success"
-                        >
-                            ...filter...
-                        </Button>
-
-                        <Button
-                            name="cancelButton"
-                            variant="danger"
-                            onClick={onHide}
-                        >
-                            ...cancel...
-                        </Button>
-                    </Modal.Footer>
                 </Form>
             </Modal>
         );

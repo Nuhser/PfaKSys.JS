@@ -22,10 +22,8 @@ class ItemList extends React.Component {
         super(props);
 
         this.onChangeNameFilter = this.onChangeNameFilter.bind(this);
-        this.enableAddItemModal = this.enableAddItemModal.bind(this);
-        this.disableAddItemModal = this.disableAddItemModal.bind(this);
-        this.enableFilterItemModal = this.enableFilterItemModal.bind(this);
-        this.disableFilterItemModal = this.disableFilterItemModal.bind(this);
+        this.onChangeConditionFilter = this.onChangeConditionFilter.bind(this);
+        this.onChangeCategoryFilter = this.onChangeCategoryFilter.bind(this);
 
         this.state = {
             items: [],
@@ -33,7 +31,11 @@ class ItemList extends React.Component {
             page: 0,
             limit: 10,
 
-            filter: {},
+            filter: {
+                name: '',
+                conditions: [],
+                categories: []
+            },
 
             showAddItemModal: false,
             showFilterItemModal: false
@@ -48,6 +50,12 @@ class ItemList extends React.Component {
 
         if (this.state.filter.name && this.state.filter.name !== '') {
             params.name = this.state.filter.name;
+        }
+        if (this.state.filter.conditions && this.state.filter.conditions.length > 0) {
+            params.conditions = this.state.filter.conditions.join(',');
+        }
+        if (this.state.filter.categories && this.state.filter.categories.length > 0) {
+            params.categories = this.state.filter.categories.join(',');
         }
 
         console.log('GET: /items', params);
@@ -66,29 +74,45 @@ class ItemList extends React.Component {
         ));
     }
 
-    enableAddItemModal() {
-        this.setState({ showAddItemModal: true });
-    }
-
-    disableAddItemModal() {
-        this.setState({ showAddItemModal: false });
-    }
-
-    enableFilterItemModal() {
-        this.setState({ showFilterItemModal: true });
-    }
-
-    disableFilterItemModal() {
-        this.setState({ showFilterItemModal: false });
-    }
-
     onChangeNameFilter(e) {
-        let filter = this.state.filter;
+        let filter = structuredClone(this.state.filter);
         filter.name = e.target.value;
 
         this.setState({
             page: 0,
-            filter: { name: e.target.value }
+            filter: filter
+        });
+    }
+
+    onChangeConditionFilter(condition, selected) {
+        let filter = structuredClone(this.state.filter);
+
+        if (filter.conditions.includes(condition) && !selected) {
+            filter.conditions.splice(filter.conditions.indexOf(condition), 1);
+        }
+        else if (!filter.conditions.includes(condition) && selected) {
+            filter.conditions.push(condition);
+        }
+
+        this.setState({
+            page: 0,
+            filter: filter
+        });
+    }
+
+    onChangeCategoryFilter(category, selected) {
+        let filter = structuredClone(this.state.filter);
+
+        if (filter.categories.includes(category) && !selected) {
+            filter.categories.splice(filter.categories.indexOf(category), 1);
+        }
+        else if (!filter.categories.includes(category) && selected) {
+            filter.categories.push(category);
+        }
+
+        this.setState({
+            page: 0,
+            filter: filter
         });
     }
 
@@ -112,7 +136,11 @@ class ItemList extends React.Component {
         return (
             <Main title={t('common.material')}>
                 <Main.Header>
-                    <Button variant="success" size="sm" onClick={this.enableAddItemModal}>
+                    <Button
+                        variant="success"
+                        size="sm"
+                        onClick={() => this.setState({ showAddItemModal: true })}
+                    >
                         <IoMdAdd size="20" className="me-1" />
                         {t('common.createNew')}
                     </Button>
@@ -121,12 +149,16 @@ class ItemList extends React.Component {
                 <Main.Body largeHeader>
                     <AddItemModal
                         show={this.state.showAddItemModal}
-                        onClose={this.disableAddItemModal}
+                        onHide={() => this.setState({ showAddItemModal: false })}
                     />
 
                     <FilterItemModal
                         show={this.state.showFilterItemModal}
-                        onHide={this.disableFilterItemModal}
+                        onHide={() => this.setState({ showFilterItemModal: false })}
+                        conditionFilter={this.state.filter.conditions}
+                        onChangeConditionFilter={this.onChangeConditionFilter}
+                        categoryFilter={this.state.filter.categories}
+                        onChangeCategoryFilter={this.onChangeCategoryFilter}
                     />
 
                     <ButtonToolbar className="d-flex justify-content-center mb-3">
@@ -143,7 +175,7 @@ class ItemList extends React.Component {
 
                         <Button 
                             variant="primary"
-                            onClick={this.enableFilterItemModal}
+                            onClick={() => this.setState({ showFilterItemModal: true })}
                             className="ms-2"
                         >
                             <FiFilter size="20" className="me-1" />

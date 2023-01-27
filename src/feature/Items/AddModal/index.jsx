@@ -86,7 +86,7 @@ class AddItemModal extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const { onClose, navigate, t } = this.props;
+        const { onHide, navigate, t } = this.props;
 
         const newItem = {
             name: this.state.name,
@@ -116,7 +116,7 @@ class AddItemModal extends React.Component {
                     )
                 })
 
-                onClose();
+                onHide();
 
                 if (e.target.name === 'saveButton') {
                     navigate('/items');
@@ -155,13 +155,13 @@ class AddItemModal extends React.Component {
     }
 
     render() {
-        const { show, onClose, t } = this.props;
+        const { show, onHide, t } = this.props;
 
         return (
             <Modal
                 size="lg"
                 show={show}
-                onHide={onClose}
+                onHide={onHide}
                 backdrop="static"
                 centered
             >
