@@ -9,7 +9,7 @@ import { FiFilter } from 'react-icons/fi';
 import { IoMdAdd } from 'react-icons/io';
 import { trackPromise } from "react-promise-tracker";
 
-import AddItemModal from "../Add/";
+import AddItemModal from "../AddModal";
 import ItemOverviewCard from "../OverviewCard";
 import Main from "../../../components/Main";
 import PaginatedOverview from "../../../components/PaginatedOverview";
