@@ -10,6 +10,7 @@
         "filter": "Filter",
         "home": "Home",
         "lastUpdatedAt": "Last updated",
+        "location": "Storage Location",
         "material": "Items",
         "name": "Name",
         "oClock": "o'clock",
@@ -33,6 +34,7 @@
             "unhygienic": "Unhygienic",
             "other": "Other"
         },
+        "filterItemsTitle": "Item Filters",
         "inventoryId": "Inventory ID",
         "inventoryIdHelpText": "Hint: You can use a barcode scanner to read the inventory ID of an item if you are inside the text field.",
         "newItemTitle": "Create New Material",

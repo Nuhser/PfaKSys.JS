@@ -10,6 +10,7 @@
         "filter": "Filter",
         "home": "Startseite",
         "lastUpdatedAt": "Zuletzt geändert",
+        "location": "Lagerort",
         "material": "Material",
         "name": "Name",
         "oClock": "Uhr",
@@ -33,6 +34,7 @@
             "unhygienic": "Unhygienisch",
             "other": "Sonstiges"
         },
+        "filterItemsTitle": "Material-Filter",
         "inventoryId": "Material ID",
         "inventoryIdHelpText": "Tipp: Du kannst die Material ID auch mit einem Barcodescanner einlesen, wenn du dich im Textfeld befindest.",
         "newItemTitle": "Neues Material anlegen",
