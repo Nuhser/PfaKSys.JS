@@ -11,7 +11,6 @@ import { trackPromise } from "react-promise-tracker";
 
 import AddItemModal from "../AddModal";
 import FilterItemModal from "../FilterModal";
-import ItemOverviewCard from "../OverviewCard";
 import Main from "../../../components/Main";
 import PaginatedOverview from "../../../components/PaginatedOverview";
 import { setActiveSidebarItem } from '../../../components/Sidebar/service';
@@ -29,7 +28,7 @@ class ItemList extends React.Component {
             items: [],
             total: 0,
             page: 0,
-            limit: 10,
+            limit: 20,
 
             filter: {
                 name: '',
@@ -44,7 +43,7 @@ class ItemList extends React.Component {
 
     getItemList() {
         const params = {
-            limit: this.state.limit || 10,
+            limit: this.state.limit || 20,
             page: this.state.page || 0
         };
 
@@ -189,7 +188,21 @@ class ItemList extends React.Component {
                         page={this.state.page}
                         setPageMethod={(value) => this.setState({ page: value })}
                         limit={this.state.limit}
-                        OverviewCardComponent={ItemOverviewCard}
+                        columnTitles={[
+                            t("common.name"),
+                            t("items.inventoryId"),
+                            t("items.quantity"),
+                            t("items.condition"),
+                            t("common.lastUpdatedAt")
+                        ]}
+                        columnKeys={[
+                            "name",
+                            "inventory_id",
+                            "quantity",
+                            "condition",
+                            "updatedAt"
+                        ]}
+                        detailPagePath="/items/"
                     />
                 </Main.Body>
             </Main>

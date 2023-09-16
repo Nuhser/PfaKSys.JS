@@ -2,24 +2,21 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import OverviewTable from "../OverviewTable";
 
 class PaginatedOverview extends React.Component {
     render() {
-        const { elements, total, page, setPageMethod, limit, OverviewCardComponent } = this.props;
+        const { elements, total, page, setPageMethod, limit, columnTitles, columnKeys, detailPagePath } = this.props;
         const pageCount = Math.ceil(total / limit);
 
         return (
             <div>
-                {
-                    elements.map(
-                        (element) => (
-                            <OverviewCardComponent
-                                key={element.id}
-                                element={element}
-                            />
-                        )
-                    )
-                }
+                <OverviewTable 
+                    columnTitles={columnTitles}
+                    columnKeys={columnKeys}
+                    elements={elements}
+                    detailPagePath={detailPagePath}
+                />
 
                 {pageCount > 1 && (
                     <div className="d-flex justify-content-center mt-5">
@@ -42,6 +39,7 @@ class PaginatedOverview extends React.Component {
                                             onClick={() => {
                                                 setPageMethod(i);
                                             }}
+                                            key={`paginationButton_${i}`}
                                         >
                                             {i+1}
                                         </Button>
