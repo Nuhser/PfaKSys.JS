@@ -5,7 +5,7 @@
 
 .header {
     position: fixed;
-    width: 100%;
+    width: calc(100% - var(--sidebarWidth));
     padding: 12px;
     top: var(--navbarHeight);
     z-index: 100;
