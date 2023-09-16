@@ -11,7 +11,7 @@ class ItemOverviewTable extends React.Component {
         if (columnTitles === undefined || columnKeys === undefined || columnTitles.length !== columnKeys.length) {
             return (
                 <Alert variant="danger">
-                    Fehler!
+                    {t("overviewTable.titleAndKeyNumberError")}
                 </Alert>
             );
         }

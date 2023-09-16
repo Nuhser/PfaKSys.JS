@@ -21,6 +21,9 @@
         "settings": "Settings",
         "users": "Users"
     },
+    "overviewTable": {
+        "titleAndKeyNumberError": "There seems to be an error regarding the headers and values of the table. Please conntact your administrator."
+    },
     "items": {
         "addedSuccess": "Item added successfully",
         "condition": "Condition",

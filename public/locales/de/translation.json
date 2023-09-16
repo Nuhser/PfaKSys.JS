@@ -21,6 +21,9 @@
         "settings": "Einstellungen",
         "users": "Benutzer"
     },
+    "overviewTable": {
+        "titleAndKeyNumberError": "Es scheint einen Fehler mit den Überschriften und Werten der Tabelle zu geben. Wende dich an deinen Administrator."
+    },
     "items": {
         "addedSuccess": "Material erfolgreich hinzugefügt",
         "condition": "Zustand",
