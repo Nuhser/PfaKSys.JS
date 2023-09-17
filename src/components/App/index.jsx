@@ -12,6 +12,7 @@ import LoadingIndicator from "../LoadingIndicator";
 
 // feature pages
 import ItemList from "../../feature/Items/List";
+import ItemDetailPage from "../../feature/Items/DetailPage";
 import UserList from "../../feature/Users/List";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     <Routes>
                         <Route path="/" exact element={<p>Hello World!</p>} />
                         <Route path="/items" element={<ItemList />} />
+                        <Route path="/items/:id" element={<ItemDetailPage />} />
                         <Route path="/users" element={<UserList />} />
                     </Routes>
                 </main>
