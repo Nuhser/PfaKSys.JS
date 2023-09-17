@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "react-bootstrap";
+import { BiArrowBack } from "react-icons/bi";
 
 import "./style.css";
 
@@ -41,11 +43,27 @@ export default class Main extends React.Component {
 
 export class Header extends React.Component {
     render() {
-        const { children } = this.props;
+        const { backButtonText, backButtonLink, children, t } = this.props;
 
         return (
             <div>
-                <h3>{document.title}</h3>
+                <div className="title-bar">
+                    <h3>
+                        {document.title}
+                    </h3>
+
+                    {backButtonText && (
+                        <Button
+                            variant="secondary"
+                            href={backButtonLink}
+                            className="back-button"
+                        >
+                            <BiArrowBack size="20" className="me-1" />
+                            {backButtonText}
+                        </Button>
+                    )}
+                </div>
+
                 {children}
             </div>
         );

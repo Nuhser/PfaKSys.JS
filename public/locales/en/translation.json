@@ -1,6 +1,7 @@
 {
     "common": {
         "add": "Add",
+        "back": "Back",
         "calendar": "Calendar",
         "category": "Category",
         "createNew": "Create new",

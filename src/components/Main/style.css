@@ -12,6 +12,12 @@
     background-color: #f1f1f1;
 }
 
+.header .title-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .body {
     float: left;
     width: 100%;
